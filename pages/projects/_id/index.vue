@@ -12,9 +12,9 @@
       <div class="container">
         <div class="columns">
           <div class="column is-one-third">
-            <figure class="image is-5by4">
+            <figure class="image is-4by3">
               <img
-                src="https://picsum.photos/600/480/"
+                src="https://picsum.photos/640/480/"
                 alt="placeholder image"
               />
             </figure>

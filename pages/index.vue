@@ -1,7 +1,7 @@
 <template>
   <div class="homepage">
     <!-- Hero -->
-    <section class="hero is-dark">
+    <section class="hero is-dark is-medium">
       <div class="hero-body">
         <div class="container">
           <h1 class="title">Website name</h1>
@@ -9,58 +9,19 @@
         </div>
       </div>
     </section>
-    <!-- Introduction (short para?) -->
-    <section class="section is-dark">
-      <div class="container"></div>
-    </section>
     <!-- Latest Projects -->
     <section class="section">
       <div class="container">
         <div class="columns">
           <!-- Repeating Cards Below  -->
-          <div class="column">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img
-                    src="https://bulma.io/images/placeholders/1280x960.png"
-                    alt="Placeholder image"
-                  />
-                </figure>
-              </div>
-              <b-collapse animation="slide" aria-id="contentIdForA11y3">
-                <div
-                  slot="trigger"
-                  slot-scope="props"
-                  class="card-header"
-                  role="button"
-                  aria-controls="contentIdForA11y3"
-                >
-                  <p class="card-header-title">Component</p>
-                  <a class="card-header-icon">
-                    <b-icon :icon="props.open ? 'angle-down' : 'angle-up'">
-                    </b-icon>
-                  </a>
-                </div>
-                <div class="card-content">
-                  <div class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Phasellus nec iaculis mauris.
-                    <a>#buefy</a>.
-                  </div>
-                </div>
-                <footer class="card-footer">
-                  <a class="card-footer-item">Save</a>
-                  <a class="card-footer-item">Edit</a>
-                  <a class="card-footer-item">Delete</a>
-                </footer>
-              </b-collapse>
-            </div>
+          <div v-for="post in latestPosts" :key="post.id" class="column">
+            <ProjectCard
+              :index="post.id"
+              :title="post.title"
+              :summary="post.summary"
+              :thumbnail="post.thumbnail"
+            />
           </div>
-
-          <div class="column"></div>
-
-          <div class="column"></div>
         </div>
       </div>
     </section>
@@ -68,7 +29,40 @@
 </template>
 
 <script>
-export default {}
+import ProjectCard from '@/components/Projects/ProjectCard.vue'
+
+export default {
+  components: {
+    ProjectCard,
+  },
+  data() {
+    return {
+      latestPosts: [
+        {
+          index: '1',
+          title: 'Project 1',
+          summary:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+          thumbnail: 'https://picsum.photos/640/480/',
+        },
+        {
+          index: '2',
+          title: 'Project 2',
+          summary:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+          thumbnail: 'https://picsum.photos/640/480/',
+        },
+        {
+          index: '3',
+          title: 'Project 3',
+          summary:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+          thumbnail: 'https://picsum.photos/640/480/',
+        },
+      ],
+    }
+  },
+}
 </script>
 
 <style></style>
