@@ -1,0 +1,29 @@
+// Import Bulma's core
+@import '~bulma/sass/utilities/_all';
+
+// Set your main colors
+$primary: $turquoise;
+$info: $cyan;
+$success: $green;
+$warning: $yellow;
+$danger: $red;
+$dark: $grey-darker;
+$light: $white-ter;
+
+// Background Stuff
+$background: $white-ter;
+$body-background-color: $background;
+
+// Fonts & text
+$text: $grey-dark;
+$family-primary: $family-sans-serif;
+$body-family: $family-primary;
+
+// Links
+$link: $primary;
+$link-invert: $primary-invert;
+$link-focus-border: $primary;
+
+// Import Bulma and Buefy styles
+@import '~bulma';
+@import '~buefy/src/scss/buefy';
