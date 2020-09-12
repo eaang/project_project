@@ -17,6 +17,11 @@
                 <b-button type="is-primary">Browse all projects</b-button>
               </nuxt-link>
             </div>
+            <div class="column">
+              <figure class="image is-1216x912">
+                <img src="~assets/images/ginger-cat-722.png" />
+              </figure>
+            </div>
           </div>
         </div>
       </div>

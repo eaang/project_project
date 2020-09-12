@@ -11,13 +11,24 @@
       <TheSidenavToggle @toggle="$emit('sidenavToggle')" />
     </template>
     <template slot="start">
-      <b-navbar-item href="#"> Home </b-navbar-item>
-      <b-navbar-item href="#"> About </b-navbar-item>
-      <b-navbar-dropdown label="Projects">
-        <b-navbar-item href="#"> Project 1 </b-navbar-item>
-        <b-navbar-item href="#"> Project 2 </b-navbar-item>
-        <b-navbar-item href="#"> Project 3 </b-navbar-item>
-      </b-navbar-dropdown>
+      <nuxt-link to="/"><b-navbar-item> Home </b-navbar-item></nuxt-link>
+      <nuxt-link to="/about"><b-navbar-item> About </b-navbar-item></nuxt-link>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <nuxt-link class="navbar-link" to="/projects">Projects</nuxt-link>
+
+        <div class="navbar-dropdown">
+          <nuxt-link to="/project/1"
+            ><b-navbar-item>Project 1</b-navbar-item></nuxt-link
+          >
+
+          <nuxt-link to="/project/2"
+            ><b-navbar-item>Project 2</b-navbar-item></nuxt-link
+          >
+          <nuxt-link to="/project/3"
+            ><b-navbar-item>Project 3</b-navbar-item></nuxt-link
+          >
+        </div>
+      </div>
     </template>
 
     <template slot="end">
