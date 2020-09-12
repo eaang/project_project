@@ -1,17 +1,30 @@
 <template>
   <div class="homepage">
     <!-- Hero -->
-    <section class="hero is-dark is-medium">
+    <section class="hero is-medium">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">Website name</h1>
-          <h2 class="subtitle">What exacty it is, explanation and stuff.</h2>
+          <div class="columns">
+            <div class="column is-two-thirds">
+              <h1 class="title">Website name</h1>
+              <h2 class="subtitle">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </h2>
+              <nuxt-link to="/projects">
+                <b-button type="is-primary">Browse all projects</b-button>
+              </nuxt-link>
+            </div>
+          </div>
         </div>
       </div>
     </section>
     <!-- Latest Projects -->
     <section class="section">
       <div class="container">
+        <p class="title">Latest Projects</p>
         <div class="columns">
           <!-- Repeating Cards Below  -->
           <div v-for="post in latestPosts" :key="post.id" class="column">

@@ -7,7 +7,7 @@
           <img :src="thumbnail" :alt="title" /></figure
       ></nuxt-link>
     </div>
-    <b-collapse class="card" animation="slide" :aria-id="index">
+    <b-collapse class="card" animation="slide" :aria-id="index" :open="false">
       <div
         slot="trigger"
         slot-scope="props"
