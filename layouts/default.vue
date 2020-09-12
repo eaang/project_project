@@ -1,7 +1,7 @@
 <template>
   <div>
     <TheHeader @sidenavToggle="displaySidenav = !displaySidenav" />
-    <TheSidenav :open="displaySidenav" />
+    <TheSidenav :open="displaySidenav" @close="displaySidenav = false" />
     <Nuxt />
   </div>
 </template>

@@ -7,6 +7,7 @@
       :fullwidth="fullwidth"
       :overlay="overlay"
       :right="right"
+      @close="$emit('close')"
     >
       <div class="p-1">
         <img
@@ -21,7 +22,7 @@
                 Administrator
                 <b-icon
                   class="is-pulled-right"
-                  :icon="props.expanded ? 'menu-down' : 'menu-up'"
+                  :icon="props.expanded ? 'angle-down' : 'angle-up'"
                 ></b-icon>
               </template>
               <b-menu-item icon="account" label="Users"></b-menu-item>
@@ -33,7 +34,7 @@
                     class="is-pulled-right"
                     position="is-bottom-left"
                   >
-                    <b-icon icon="dots-vertical" slot="trigger"></b-icon>
+                    <b-icon icon="ellipsis-v" slot="trigger"></b-icon>
                     <b-dropdown-item aria-role="listitem"
                       >Action</b-dropdown-item
                     >
