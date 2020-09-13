@@ -8,33 +8,29 @@
             <div class="title">Add New Project</div>
 
             <!-- Name and Languages -->
-            <div class="field is-horizontal">
-              <div class="field-body">
-                <b-field label="Name">
-                  <b-input v-model="form.name"></b-input>
-                </b-field>
-                <b-field label="Languages Used">
-                  <b-taginput
-                    v-model="tags"
-                    :data="filteredTags"
-                    autocomplete
-                    :allow-new="allowNew"
-                    :open-on-focus="openOnFocus"
-                    icon="tag"
-                    placeholder="Add a language"
-                    @typing="getFilteredTags"
-                  >
-                  </b-taginput>
-                </b-field>
-              </div>
-            </div>
+            <b-field label="Name">
+              <b-input v-model="form.name"></b-input>
+            </b-field>
+            <b-field label="Languages Used">
+              <b-taginput
+                v-model="form.languages"
+                :data="filteredTags"
+                autocomplete
+                :allow-new="allowNew"
+                :open-on-focus="openOnFocus"
+                icon="tag"
+                placeholder="Add a language"
+                @typing="getFilteredTags"
+              >
+              </b-taginput>
+            </b-field>
 
-            <!-- About the Project -->
-            <label class="label">Current Progress</label>
+            <!-- Progress and Description -->
+            <label class="label">Current Progress {{ form.progress }}</label>
             <b-field>
               <b-slider
-                v-model="sliderValue"
-                :custom-formatter="(sliderValue) => sliderValue * 10 + '%'"
+                v-model="form.progress"
+                :custom-formatter="(val) => val * 10 + '%'"
                 :min="0"
                 :max="10"
                 :tooltip-type="sliderType"
@@ -52,18 +48,19 @@
             <!-- Project Images -->
             <label class="label"
               >Project Screenshots
-              <span class="tags mb-1">
+              <div class="tags mt-1">
                 <span
                   v-for="(file, index) in form.dropFiles"
                   :key="index"
-                  class="tag is-primary mb-0"
+                  class="tag is-primary"
                 >
                   {{ file.name }}
                   <button
                     class="delete is-small"
                     type="button"
                     @click="deleteDropFile(index)"
-                  ></button> </span></span
+                  ></button>
+                </span></div
             ></label>
             <b-field>
               <b-upload v-model="form.dropFiles" multiple drag-drop expanded>
@@ -80,10 +77,14 @@
 
             <div class="field is-grouped is-grouped-centered">
               <div class="control">
-                <button class="button is-primary">Submit</button>
+                <button class="button is-primary" @click="saveProject">
+                  Submit
+                </button>
               </div>
               <div class="control">
-                <button class="button is-warning">Cancel</button>
+                <button class="button is-warning" @click="cancelProject">
+                  Cancel
+                </button>
               </div>
             </div>
           </div>
@@ -105,11 +106,9 @@ export default {
       tags: [],
       allowNew: false,
       openOnFocus: false,
-      sliderValue: 0,
       form: {
         name: '',
         languages: [],
-        selected: null,
         summary: '',
         description: '',
         dropFiles: [],
@@ -118,13 +117,10 @@ export default {
     }
   },
   computed: {
-    progress() {
-      return this.sliderValue * 10
-    },
     sliderType() {
-      if (this.sliderValue > 2.5 && this.sliderValue < 7.5) {
+      if (this.form.progress > 2.5 && this.form.progress < 7.5) {
         return 'is-warning'
-      } else if (this.sliderValue >= 7.5) {
+      } else if (this.form.progress >= 7.5) {
         return 'is-success'
       }
       return 'is-danger'
@@ -139,11 +135,11 @@ export default {
     deleteDropFile(index) {
       this.form.dropFiles.splice(index, 1)
     },
-    onSave() {
+    saveProject() {
       // Save the post
       console.log(this.form)
     },
-    onCancel() {
+    cancelProject() {
       // Cancel the post
       this.$router.push('/admin')
     },

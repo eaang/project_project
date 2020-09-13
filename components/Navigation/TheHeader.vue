@@ -16,16 +16,9 @@
         <nuxt-link class="navbar-link" to="/projects">Projects</nuxt-link>
 
         <div class="navbar-dropdown is-boxed">
-          <nuxt-link to="/projects/1"
-            ><b-navbar-item>Project 1</b-navbar-item></nuxt-link
-          >
-
-          <nuxt-link to="/projects/2"
-            ><b-navbar-item>Project 2</b-navbar-item></nuxt-link
-          >
-          <nuxt-link to="/projects/3"
-            ><b-navbar-item>Project 3</b-navbar-item></nuxt-link
-          >
+          <b-navbar-item>Project 1</b-navbar-item>
+          <b-navbar-item>Project 2</b-navbar-item>
+          <b-navbar-item>Project 3</b-navbar-item>
         </div>
       </div>
     </template>
