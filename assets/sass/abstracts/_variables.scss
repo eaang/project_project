@@ -2,19 +2,52 @@
 @import '~bulma/sass/utilities/_all';
 
 // Set your main colors
-$primary: $turquoise;
-$info: $cyan;
+$primary: #eb7e44;
+$info: #db5d43;
 $success: $green;
 $warning: $yellow;
 $danger: $red;
 $dark: $grey-darker;
 $light: $white-ter;
 
+// Lists & Maps
+// Setup $colors to use as bulma classes (e.g. 'is-twitter')
+$colors: (
+  'light': (
+    $light,
+    $light-invert,
+  ),
+  'dark': (
+    $dark,
+    $dark-invert,
+  ),
+  'primary': (
+    $primary,
+    $primary-invert,
+  ),
+  'info': (
+    $info,
+    $info-invert,
+  ),
+  'success': (
+    $success,
+    $success-invert,
+  ),
+  'warning': (
+    $warning,
+    $warning-invert,
+  ),
+  'danger': (
+    $danger,
+    $danger-invert,
+  ),
+);
+
 // Background Stuff
 $background: $white-ter;
 $body-background-color: $background;
 
-// Fonts & text
+// Fonts & Text
 $text: $grey-dark;
 $family-primary: $family-sans-serif;
 $body-family: $family-primary;

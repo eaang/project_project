@@ -10,65 +10,44 @@
       @close="$emit('close')"
     >
       <div class="p-1">
-        <img
-          src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
-          alt="Lightweight UI components for Vue.js based on Bulma"
-        />
+        <figure class="image is-1216x912">
+          <img src="~assets/images/cat-navigation.png" />
+        </figure>
         <b-menu>
           <b-menu-list label="Menu">
-            <b-menu-item icon="information-outline" label="Info"></b-menu-item>
-            <b-menu-item icon="settings">
+            <b-menu-item
+              label="Home"
+              icon="home"
+              tag="nuxt-link"
+              to="/"
+            ></b-menu-item>
+            <b-menu-item
+              label="About"
+              icon="link"
+              tag="nuxt-link"
+              to="/about"
+            ></b-menu-item>
+            <b-menu-item icon="wrench">
               <template slot="label" slot-scope="props">
-                Administrator
+                Projects
                 <b-icon
                   class="is-pulled-right"
                   :icon="props.expanded ? 'angle-down' : 'angle-up'"
                 ></b-icon>
               </template>
-              <b-menu-item icon="account" label="Users"></b-menu-item>
-              <b-menu-item icon="cellphone-link">
-                <template slot="label">
-                  Devices
-                  <b-dropdown
-                    aria-role="list"
-                    class="is-pulled-right"
-                    position="is-bottom-left"
-                  >
-                    <b-icon icon="ellipsis-v" slot="trigger"></b-icon>
-                    <b-dropdown-item aria-role="listitem"
-                      >Action</b-dropdown-item
-                    >
-                    <b-dropdown-item aria-role="listitem"
-                      >Another action</b-dropdown-item
-                    >
-                    <b-dropdown-item aria-role="listitem"
-                      >Something else</b-dropdown-item
-                    >
-                  </b-dropdown>
-                </template>
-              </b-menu-item>
               <b-menu-item
-                icon="cash-multiple"
-                label="Payments"
-                disabled
+                label="All Projects"
+                icon="project-diagram"
+                tag="nuxt-link"
+                to="/projects"
               ></b-menu-item>
+              <b-menu-item label="Project 1"></b-menu-item>
+              <b-menu-item label="Project 2"></b-menu-item>
+              <b-menu-item label="Project 3"></b-menu-item>
             </b-menu-item>
-            <b-menu-item icon="account" label="My Account">
-              <b-menu-item label="Account data"></b-menu-item>
-              <b-menu-item label="Addresses"></b-menu-item>
-            </b-menu-item>
-          </b-menu-list>
-          <b-menu-list>
-            <b-menu-item
-              label="Expo"
-              icon="link"
-              tag="router-link"
-              target="_blank"
-              to="/expo"
-            ></b-menu-item>
           </b-menu-list>
           <b-menu-list label="Actions">
-            <b-menu-item label="Logout"></b-menu-item>
+            <b-menu-item label="Login"></b-menu-item>
           </b-menu-list>
         </b-menu>
       </div>

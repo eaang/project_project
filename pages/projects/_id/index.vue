@@ -3,8 +3,11 @@
     <section class="hero is-primary is-bold">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">Primary bold title</h1>
-          <h2 class="subtitle">Primary bold subtitle</h2>
+          <h1 class="title">Project name goes here</h1>
+          <h2 class="subtitle">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </h2>
         </div>
       </div>
     </section>
@@ -21,22 +24,32 @@
           </div>
           <div class="column">
             <div class="content">
-              <h3>About Projectname</h3>
-              <ul class="project-points">
-                <li>Eget felis eget nunc lobortis.</li>
-                <li>Lacinia at quis risus sed vulputate odio ut enim.</li>
-                <li>Commodo elit at imperdiet dui.</li>
-                <li>Tellus at urna condimentum mattis pellentesque id nibh.</li>
-                <li>Posuere urna nec tincidunt praesent semper.</li>
-              </ul>
+              <div class="columns">
+                <div class="column">
+                  <h3>Languages Used</h3>
+                  <b-taglist>
+                    <b-tag type="is-info">First</b-tag>
+                    <b-tag type="is-info">Second</b-tag>
+                    <b-tag type="is-info">Third</b-tag>
+                    <b-tag type="is-info">Fourth</b-tag>
+                    <b-tag type="is-info">Fifth</b-tag>
+                  </b-taglist>
+                </div>
+                <div class="column">
+                  <h3>Current status</h3>
+                  <b-progress
+                    type="is-success"
+                    :value="60"
+                    show-value
+                  ></b-progress>
+                </div>
+              </div>
+              <h3>What is this about?</h3>
               <p class="project-info">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                nisi ut aliquip ex ea commodo consequat.
               </p>
               <b-button type="is-primary">Visit Project</b-button>
             </div>
