@@ -46,22 +46,7 @@
             </b-field>
 
             <!-- Project Images -->
-            <label class="label"
-              >Project Screenshots
-              <div class="tags mt-1">
-                <span
-                  v-for="(file, index) in form.dropFiles"
-                  :key="index"
-                  class="tag is-primary"
-                >
-                  {{ file.name }}
-                  <button
-                    class="delete is-small"
-                    type="button"
-                    @click="deleteDropFile(index)"
-                  ></button>
-                </span></div
-            ></label>
+            <label class="label">Project Screenshots </label>
             <b-field>
               <b-upload v-model="form.dropFiles" multiple drag-drop expanded>
                 <section class="section">
@@ -74,8 +59,29 @@
                 </section>
               </b-upload>
             </b-field>
-
-            <div class="field is-grouped is-grouped-centered">
+            <b-field v-if="form.dropFiles.length > 0">
+              <div class="tile is-ancestor" style="flex-wrap: wrap">
+                <div
+                  v-for="(file, index) in form.dropFiles"
+                  :key="index"
+                  class="tile is-parent is-3"
+                >
+                  <div class="tile is-child box">
+                    <figure class="image">
+                      <img :src="showImage(file)" />
+                      <button
+                        style="position: absolute; top: 0; right: 0"
+                        class="delete is-small"
+                        type="button"
+                        @click="deleteDropFile(index)"
+                      ></button>
+                    </figure>
+                    <div class="is-size-7">{{ file.name }}</div>
+                  </div>
+                </div>
+              </div>
+            </b-field>
+            <b-field grouped>
               <div class="control">
                 <button class="button is-primary" @click="saveProject">
                   Submit
@@ -86,7 +92,7 @@
                   Cancel
                 </button>
               </div>
-            </div>
+            </b-field>
           </div>
           <div class="column"></div>
         </div>
@@ -142,6 +148,9 @@ export default {
     cancelProject() {
       // Cancel the post
       this.$router.push('/admin')
+    },
+    showImage(file) {
+      return URL.createObjectURL(file)
     },
   },
 }
