@@ -58,7 +58,7 @@
 <script>
 export default {
   props: {
-    open: {
+    status: {
       type: Boolean,
       default: false,
     },
@@ -70,6 +70,16 @@ export default {
       fullwidth: false,
       right: true,
     }
+  },
+  computed: {
+    open: {
+      get() {
+        return this.status
+      },
+      set() {
+        return false
+      },
+    },
   },
 }
 </script>

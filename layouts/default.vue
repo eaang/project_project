@@ -1,7 +1,7 @@
 <template>
   <div>
-    <TheHeader @sidenavToggle="displaySidenav = !displaySidenav" />
-    <TheSidenav :open="displaySidenav" @close="displaySidenav = false" />
+    <TheHeader @toggle-sidenav="toggleSidenav" />
+    <TheSidenav :status="displaySidenav" @close="toggleSidenav" />
     <Nuxt />
     <TheFooter />
   </div>
@@ -22,6 +22,11 @@ export default {
     return {
       displaySidenav: false,
     }
+  },
+  methods: {
+    toggleSidenav() {
+      this.displaySidenav = !this.displaySidenav
+    },
   },
 }
 </script>

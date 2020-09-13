@@ -7,7 +7,7 @@
         </figure>
       </b-navbar-item>
 
-      <TheSidenavToggle @toggle="$emit('sidenavToggle')" />
+      <TheSidenavToggle @toggle="$emit('toggle-sidenav')" />
     </template>
     <template slot="start">
       <nuxt-link class="navbar-item" to="/" exact>Home</nuxt-link>

@@ -6,6 +6,8 @@
           <div class="column"></div>
           <div class="column is-two-thirds">
             <div class="title">Add New Project</div>
+
+            <!-- Name and Languages -->
             <div class="field is-horizontal">
               <div class="field-body">
                 <b-field label="Name">
@@ -19,7 +21,7 @@
                     :allow-new="allowNew"
                     :open-on-focus="openOnFocus"
                     icon="tag"
-                    placeholder="Add a tag"
+                    placeholder="Add a language"
                     @typing="getFilteredTags"
                   >
                   </b-taginput>
@@ -27,28 +29,55 @@
               </div>
             </div>
 
+            <!-- About the Project -->
+            <label class="label">Current Progress</label>
+            <b-field>
+              <b-slider
+                v-model="sliderValue"
+                :custom-formatter="(sliderValue) => sliderValue * 10 + '%'"
+                :min="0"
+                :max="10"
+                :tooltip-type="sliderType"
+                :type="sliderType"
+                ticks
+              ></b-slider>
+            </b-field>
             <b-field label="Short Summary">
-              <b-input v-model="summary"></b-input>
+              <b-input v-model="form.summary"></b-input>
             </b-field>
             <b-field label="Description">
-              <b-input v-model="description" type="textarea"></b-input>
+              <b-input v-model="form.description" type="textarea"></b-input>
             </b-field>
-            <b-field label="Thumbnail">
-              <b-field
-                class="file is-primary"
-                :class="{ 'has-name': !!form.file }"
-              >
-                <b-upload v-model="form.file" class="file-label">
-                  <span class="file-cta">
-                    <b-icon class="file-icon" icon="upload"></b-icon>
-                    <span class="file-label">Click to upload</span>
-                  </span>
-                  <span v-if="form.file" class="file-name">
-                    {{ form.file.name }}
-                  </span>
-                </b-upload>
-              </b-field>
+
+            <!-- Project Images -->
+            <label class="label"
+              >Project Screenshots
+              <span class="tags mb-1">
+                <span
+                  v-for="(file, index) in form.dropFiles"
+                  :key="index"
+                  class="tag is-primary mb-0"
+                >
+                  {{ file.name }}
+                  <button
+                    class="delete is-small"
+                    type="button"
+                    @click="deleteDropFile(index)"
+                  ></button> </span></span
+            ></label>
+            <b-field>
+              <b-upload v-model="form.dropFiles" multiple drag-drop expanded>
+                <section class="section">
+                  <div class="content has-text-centered">
+                    <p>
+                      <b-icon icon="upload" size="is-large"> </b-icon>
+                    </p>
+                    <p>Drop your files here or click to upload</p>
+                  </div>
+                </section>
+              </b-upload>
             </b-field>
+
             <div class="field is-grouped is-grouped-centered">
               <div class="control">
                 <button class="button is-primary">Submit</button>
@@ -76,15 +105,30 @@ export default {
       tags: [],
       allowNew: false,
       openOnFocus: false,
+      sliderValue: 0,
       form: {
         name: '',
         languages: [],
         selected: null,
         summary: '',
         description: '',
-        file: null,
+        dropFiles: [],
+        progress: 0,
       },
     }
+  },
+  computed: {
+    progress() {
+      return this.sliderValue * 10
+    },
+    sliderType() {
+      if (this.sliderValue > 2.5 && this.sliderValue < 7.5) {
+        return 'is-warning'
+      } else if (this.sliderValue >= 7.5) {
+        return 'is-success'
+      }
+      return 'is-danger'
+    },
   },
   methods: {
     getFilteredTags(text) {
@@ -96,10 +140,12 @@ export default {
       this.form.dropFiles.splice(index, 1)
     },
     onSave() {
-      // S  ave the post
+      // Save the post
+      console.log(this.form)
     },
     onCancel() {
       // Cancel the post
+      this.$router.push('/admin')
     },
   },
 }
