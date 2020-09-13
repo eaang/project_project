@@ -39,7 +39,7 @@ nisi ut aliquip ex ea commodo consequat.`,
     },
     catPic: {
       type: String,
-      default: '~/assets/images/cat-default.png',
+      default: require('~/assets/images/cat-default.png'),
     },
     catPicDimensions: {
       type: String,

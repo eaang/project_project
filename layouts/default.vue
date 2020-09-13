@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="Site">
     <TheHeader @toggle-sidenav="toggleSidenav" />
     <TheSidenav :status="displaySidenav" @close="toggleSidenav" />
-    <Nuxt />
+    <Nuxt class="Site-content" />
     <TheFooter />
   </div>
 </template>
@@ -31,4 +31,14 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.Site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.Site-content {
+  flex: 1;
+}
+</style>

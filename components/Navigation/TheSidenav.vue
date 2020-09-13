@@ -47,7 +47,11 @@
             </b-menu-item>
           </b-menu-list>
           <b-menu-list label="Actions">
-            <b-menu-item label="Login"></b-menu-item>
+            <b-menu-item
+              label="Login"
+              tag="nuxt-link"
+              to="/admin/auth"
+            ></b-menu-item>
           </b-menu-list>
         </b-menu>
       </div>
@@ -84,7 +88,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .p-1 {
   padding: 1em;
 }

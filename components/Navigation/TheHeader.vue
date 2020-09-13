@@ -11,9 +11,9 @@
     </template>
     <template slot="start">
       <nuxt-link class="navbar-item" to="/" exact>Home</nuxt-link>
-      <nuxt-link class="navbar-item" to="/about">About</nuxt-link>
+      <nuxt-link class="navbar-item" to="/about">About me</nuxt-link>
       <div class="navbar-item has-dropdown is-hoverable">
-        <nuxt-link class="navbar-link" to="/projects">Projects</nuxt-link>
+        <nuxt-link class="navbar-link" to="/projects">My projects</nuxt-link>
 
         <div class="navbar-dropdown is-boxed">
           <b-navbar-item>Project 1</b-navbar-item>
@@ -26,7 +26,9 @@
     <template slot="end">
       <b-navbar-item tag="div">
         <div class="buttons">
-          <a class="button is-primary"> Log in </a>
+          <nuxt-link to="/admin/auth"
+            ><b-button class="is-primary"> Log in </b-button></nuxt-link
+          >
         </div>
       </b-navbar-item>
     </template>

@@ -2,18 +2,18 @@
   <!-- This is a crad -->
   <div class="card">
     <div class="card-image">
-      <nuxt-link :to="'/projects/' + index">
+      <nuxt-link :to="postLink">
         <figure class="image is-4by3">
           <img :src="thumbnail" :alt="title" /></figure
       ></nuxt-link>
     </div>
-    <b-collapse class="card" animation="slide" :aria-id="index" :open="false">
+    <b-collapse class="card" animation="slide" :aria-id="id" :open="false">
       <div
         slot="trigger"
         slot-scope="props"
         class="card-header"
         role="button"
-        :aria-controls="index"
+        :aria-controls="id"
       >
         <p class="card-header-title">{{ title }}</p>
         <a class="card-header-icon">
@@ -26,10 +26,6 @@
           <a>#buefy</a>.
         </div>
       </div>
-      <footer class="card-footer">
-        <a class="card-footer-item">Edit</a>
-        <a class="card-footer-item">Delete</a>
-      </footer>
     </b-collapse>
   </div>
 </template>
@@ -38,7 +34,11 @@
 export default {
   name: 'ProjectCard',
   props: {
-    index: {
+    isAdmin: {
+      type: Boolean,
+      required: true,
+    },
+    id: {
       type: String,
       required: true,
     },
@@ -53,6 +53,11 @@ export default {
     thumbnail: {
       type: String,
       required: true,
+    },
+  },
+  computed: {
+    postLink() {
+      return this.isAdmin ? '/admin/' + this.id : '/projects/' + this.id
     },
   },
 }
