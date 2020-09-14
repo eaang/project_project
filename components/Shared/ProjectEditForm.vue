@@ -2,14 +2,19 @@
   <div class="new-project-form">
     <!-- Name and Languages -->
     <b-field label="Project Name">
-      <b-input v-model="form.name"></b-input>
+      <b-input v-model.lazy="form.name"></b-input>
     </b-field>
-    <b-field label="URL">
-      <b-input v-model="form.link"></b-input>
+    <b-field grouped>
+      <b-field label="URL" expanded>
+        <b-input v-model.lazy="form.link" expanded></b-input>
+      </b-field>
+      <b-field label="Github Repository" expanded>
+        <b-input v-model.lazy="form.github" expanded></b-input>
+      </b-field>
     </b-field>
     <b-field label="Languages Used">
       <b-taginput
-        v-model="form.languages"
+        v-model.lazy="form.languages"
         :data="filteredTags"
         autocomplete
         :allow-new="allowNew"
@@ -25,7 +30,7 @@
     <label class="label">Current Progress</label>
     <b-field>
       <b-slider
-        v-model="form.progress"
+        v-model.lazy="form.progress"
         :custom-formatter="(val) => val * 10 + '%'"
         :min="0"
         :max="10"
@@ -35,16 +40,16 @@
       ></b-slider>
     </b-field>
     <b-field label="Short Summary">
-      <b-input v-model="form.summary"></b-input>
+      <b-input v-model.lazy="form.summary"></b-input>
     </b-field>
     <b-field label="Description">
-      <b-input v-model="form.description" type="textarea"></b-input>
+      <b-input v-model.lazy="form.description" type="textarea"></b-input>
     </b-field>
 
     <!-- Project Images -->
     <label class="label">Project Screenshots </label>
     <b-field>
-      <b-upload v-model="form.dropFiles" multiple drag-drop expanded>
+      <b-upload v-model.lazy="form.dropFiles" multiple drag-drop expanded>
         <section class="section">
           <div class="content has-text-centered">
             <p>
@@ -112,6 +117,9 @@ export default {
   },
   data() {
     return {
+      files: [],
+      isError: false,
+      errorText: null,
       filteredTags: data.sort(),
       isSelectOnly: false,
       tags: [],
@@ -122,13 +130,15 @@ export default {
             ...this.project,
           }
         : {
-            name: '',
-            languages: [],
-            summary: '',
             description: '',
-            dropFiles: [],
-            progress: 0,
+            github: '',
+            images: [],
+            languages: [],
             link: '',
+            name: '',
+            progress: 0,
+            summary: '',
+            dropFiles: [],
           },
     }
   },
@@ -152,8 +162,19 @@ export default {
       this.form.dropFiles.splice(index, 1)
     },
     saveProject() {
-      // Save the post
-      this.$emit('submit', this.form)
+      this.form.dropFiles.forEach((file) => {
+        this.uploadFileToCloudinary(file)
+          .then((fileResponse) => {
+            if (typeof fileResponse.public_id === typeof String()) {
+              this.form.images.push(fileResponse.public_id)
+            }
+          })
+          .then(() => {
+            if (this.form.images.length === this.form.dropFiles.length) {
+              this.$emit('submit', this.form)
+            }
+          })
+      })
     },
     cancelProject() {
       // Cancel the post
@@ -161,6 +182,45 @@ export default {
     },
     showImage(file) {
       return URL.createObjectURL(file)
+    },
+    uploadFileToCloudinary(file) {
+      return new Promise(function (resolve, reject) {
+        // Ideally these two lines would be in a .env file
+        const CLOUDINARY_URL = process.env.CLOUDINARY_URL
+        const CLOUDINARY_UPLOAD_PRESET = process.env.CLOUDINARY_UPLOAD_PRESET
+
+        const formData = new FormData()
+        formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+        formData.append('folder', 'projects')
+        formData.append('file', file)
+
+        const request = new XMLHttpRequest()
+        request.open('POST', CLOUDINARY_URL, true)
+        request.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
+
+        request.onreadystatechange = () => {
+          // File uploaded successfully
+          if (request.readyState === 4 && request.status === 200) {
+            const response = JSON.parse(request.responseText)
+            resolve(response)
+          }
+
+          // Not succesfull, let find our what happened
+          if (request.status !== 200) {
+            const response = JSON.parse(request.responseText)
+            const error = response.error.message
+            alert('error, status code not 200 ' + error)
+            reject(error)
+          }
+        }
+
+        request.onerror = (err) => {
+          alert('error: ' + err)
+          reject(err)
+        }
+
+        request.send(formData)
+      })
     },
   },
 }
