@@ -6,7 +6,6 @@
           <img src="~assets/images/cat-face.png" />
         </figure>
       </b-navbar-item>
-
       <TheSidenavToggle @toggle="$emit('toggle-sidenav')" />
     </template>
     <template slot="start">

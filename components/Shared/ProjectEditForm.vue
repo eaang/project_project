@@ -4,6 +4,9 @@
     <b-field label="Project Name">
       <b-input v-model="form.name"></b-input>
     </b-field>
+    <b-field label="URL">
+      <b-input v-model="form.link"></b-input>
+    </b-field>
     <b-field label="Languages Used">
       <b-taginput
         v-model="form.languages"
@@ -125,6 +128,7 @@ export default {
             description: '',
             dropFiles: [],
             progress: 0,
+            link: '',
           },
     }
   },
@@ -149,7 +153,7 @@ export default {
     },
     saveProject() {
       // Save the post
-      console.log(this.form)
+      this.$emit('submit', this.form)
     },
     cancelProject() {
       // Cancel the post

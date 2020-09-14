@@ -29,7 +29,7 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: ['@/plugins/buefy.js'],
+  plugins: ['@/plugins/buefy.js', '@/plugins/fontawesome.js'],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components

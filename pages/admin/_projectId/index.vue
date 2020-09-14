@@ -32,6 +32,7 @@ export default {
     return {
       project: {
         name: 'The Project Project',
+        url: '/',
         languages: [
           'HTML',
           'CSS',

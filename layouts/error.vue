@@ -15,7 +15,6 @@ export default {
         title: 'Oh no! Something went wrong.',
         bodyCopy: 'Maybe you should try searching somewhere else instead?',
         catPic: require('~/assets/images/cat-lost.png'),
-        catPicDimensions: '1216x912',
         hasButton: true,
         buttonText: 'Return home',
       },

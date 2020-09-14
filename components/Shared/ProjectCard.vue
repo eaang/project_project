@@ -21,10 +21,7 @@
         </a>
       </div>
       <div class="card-content">
-        <div class="content">
-          {{ summary }}
-          <a>#buefy</a>.
-        </div>
+        <div class="content">{{ summary }}</div>
       </div>
     </b-collapse>
   </div>

@@ -55,8 +55,12 @@ $body-family: $family-primary;
 
 // Links
 $link: $primary;
+$link-hover: $info;
 $link-invert: $primary-invert;
 $link-focus-border: $primary;
+
+// Layout Stuff
+$footer-padding: 1.5rem;
 
 // Import Bulma and Buefy styles
 @import '~bulma';

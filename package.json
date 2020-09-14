@@ -18,7 +18,9 @@
     "@nuxtjs/axios": "^5.12.0",
     "buefy": "^0.9.3",
     "nuxt": "^2.14.0",
-    "nuxt-fontawesome": "^0.4.0"
+    "nuxt-fontawesome": "^0.4.0",
+    "vue-carousel": "^0.18.0",
+    "vue-picture-swipe": "^2.0.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.1.0",

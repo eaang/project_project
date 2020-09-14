@@ -11,7 +11,7 @@
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-two-thirds">
-            <ProjectEditForm />
+            <ProjectEditForm @submit="onSubmitted" />
           </div>
         </div>
       </div>
@@ -25,6 +25,9 @@ import ProjectEditForm from '@/components/Shared/ProjectEditForm.vue'
 export default {
   components: {
     ProjectEditForm,
+  },
+  methods: {
+    onSubmitted(projectData) {},
   },
 }
 </script>

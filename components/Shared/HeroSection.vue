@@ -13,9 +13,7 @@
             </nuxt-link>
           </div>
           <div class="column">
-            <figure :class="'image is-' + catPicDimensions">
-              <img :src="catPic" />
-            </figure>
+            <img :src="catPic" />
           </div>
         </div>
       </div>
@@ -40,10 +38,6 @@ nisi ut aliquip ex ea commodo consequat.`,
     catPic: {
       type: String,
       default: require('~/assets/images/cat-default.png'),
-    },
-    catPicDimensions: {
-      type: String,
-      default: '1203x912',
     },
     hasButton: {
       type: Boolean,

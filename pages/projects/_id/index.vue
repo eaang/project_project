@@ -3,55 +3,58 @@
     <section class="hero is-primary is-bold">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">Project name goes here</h1>
+          <h1 class="title">{{ project.name }}</h1>
           <h2 class="subtitle">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            {{ project.summary }}
           </h2>
         </div>
       </div>
     </section>
-    <section class="section project-info">
+    <section class="section">
       <div class="container">
-        <div class="columns">
-          <div class="column is-one-third">
-            <figure class="image is-4by3">
-              <img
-                src="https://picsum.photos/640/480/"
-                alt="placeholder image"
-              />
-            </figure>
+        <div class="columns is-centered">
+          <div class="column">
+            <b-carousel :indicator-inside="false">
+              <b-carousel-item v-for="(item, i) in 4" :key="i">
+                <span class="image" @click="isImageModalActive = true">
+                  <img :src="getImgUrl(i)" />
+                </span>
+              </b-carousel-item>
+              <template slot="indicators" slot-scope="props">
+                <span class="al image">
+                  <img :src="getImgUrl(props.i)" :title="props.i" />
+                </span>
+              </template>
+            </b-carousel>
           </div>
+
           <div class="column">
             <div class="content">
-              <div class="columns">
-                <div class="column">
-                  <h3>Languages Used</h3>
-                  <b-taglist>
-                    <b-tag type="is-info">First</b-tag>
-                    <b-tag type="is-info">Second</b-tag>
-                    <b-tag type="is-info">Third</b-tag>
-                    <b-tag type="is-info">Fourth</b-tag>
-                    <b-tag type="is-info">Fifth</b-tag>
-                  </b-taglist>
-                </div>
-                <div class="column">
-                  <h3>Current status</h3>
-                  <b-progress
-                    type="is-success"
-                    :value="60"
-                    show-value
-                  ></b-progress>
-                </div>
-              </div>
+              <h3>Languages used</h3>
+              <b-taglist>
+                <b-tag
+                  v-for="language in project.languages"
+                  :key="language"
+                  type="is-primary"
+                >
+                  {{ language }}
+                </b-tag>
+              </b-taglist>
+              <h3>Completion status</h3>
+              <b-progress
+                type="is-success"
+                value="80"
+                format="percent"
+                size="is-large"
+                show-value
+              ></b-progress>
               <h3>What is this about?</h3>
               <p class="project-info">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
+                {{ project.description }}
               </p>
-              <b-button type="is-primary">Visit Project</b-button>
+              <h3>
+                <b-button type="is-primary" expanded>Visit Project</b-button>
+              </h3>
             </div>
           </div>
         </div>
@@ -61,7 +64,55 @@
 </template>
 
 <script>
-export default {}
+export default {
+  asyncData(context, callback) {
+    callback(null, {
+      project: {
+        name: 'The Project Project',
+        link: '/',
+        languages: [
+          'HTML',
+          'CSS',
+          'Javascript',
+          'Bulma',
+          'Buefy',
+          'Vue',
+          'Nuxt',
+        ],
+        summary: 'A project to hold all my other projects!',
+        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
+        dropFiles: [],
+        progress: 8,
+      },
+    })
+  },
+  data() {
+    return {
+      gallery: false,
+    }
+  },
+  methods: {
+    getImgUrl(value) {
+      value += 50
+      return `https://picsum.photos/id/10${value}/800/600`
+    },
+    switchGallery(value) {
+      this.gallery = value
+      if (value) {
+        return document.documentElement.classList.add('is-clipped')
+      } else {
+        return document.documentElement.classList.remove('is-clipped')
+      }
+    },
+  },
+}
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.is-active .al img {
+  filter: grayscale(0%);
+}
+.al img {
+  filter: grayscale(100%);
+}
+</style>

@@ -1,16 +1,21 @@
 <template>
   <footer class="footer">
-    <div class="content has-text-centered">
-      <p>
-        <strong>Bulma</strong> by
-        <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is
-        licensed
-        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The
-        website content is licensed
-        <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-          >CC BY NC SA 4.0</a
-        >.
-      </p>
+    <div class="container">
+      <div class="columns is-mobile is-gapless">
+        <div class="column align-items-center justify-content-end">
+          <span class="has-text-info">
+            all cat pics from
+            <a href="https://icons8.com/illustrations/style--ginger-cat-1">
+              icons8</a
+            >!
+          </span>
+        </div>
+        <div
+          class="column is-3-mobile is-2-tablet is-1-desktop align-items-center"
+        >
+          <img src="~/assets/images/cat-photo.png" alt="" />
+        </div>
+      </div>
     </div>
   </footer>
 </template>
@@ -19,4 +24,12 @@
 export default {}
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.align-items-center {
+  display: flex;
+  align-items: center;
+}
+.justify-content-end {
+  justify-content: end;
+}
+</style>
