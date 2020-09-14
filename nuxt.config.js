@@ -20,6 +20,12 @@ export default {
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    script: [
+      {
+        src: 'https://widget.cloudinary.com/v2.0/global/all.js',
+        type: 'text/javascript',
+      },
+    ],
   },
   /*
    ** Global CSS
@@ -42,6 +48,7 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     '@nuxtjs/style-resources',
+    '@nuxtjs/dotenv',
   ],
   styleResources: {
     scss: ['@/assets/sass/main.scss'],
@@ -52,6 +59,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/cloudinary',
     'nuxt-fontawesome',
   ],
   fontawesome: {
@@ -76,5 +84,9 @@ export default {
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
+  cloudinary: {
+    // Cloudinary configuration options
+    cloudName: 'dqywsmiax',
+  },
   build: {},
 }
