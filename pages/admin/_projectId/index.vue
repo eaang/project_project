@@ -31,21 +31,19 @@ export default {
   data() {
     return {
       project: {
-        name: 'The Project Project',
-        url: '/',
-        languages: [
-          'HTML',
-          'CSS',
-          'Javascript',
-          'Bulma',
-          'Buefy',
-          'Vue',
-          'Nuxt',
+        id: '1',
+        description: 'A project to hold other projects.',
+        github: '',
+        images: [
+          'projects/gzmpo4abib15yesjaeep',
+          'projects/sh2dnhcx9nqzypl7ysqw',
         ],
-        summary: 'A project to hold all my other projects!',
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
+        languages: ['HTML', 'CSS', 'Bulma', 'Buefy', 'Vue', 'Nuxt'],
+        link: 'http://testlink.io',
+        name: 'The Project of Projects',
+        progress: 7,
+        summary: 'A project to hold other projects.',
         dropFiles: [],
-        progress: 8,
       },
     }
   },

@@ -204,8 +204,12 @@ export default {
     deleteDropFile(index) {
       this.form.dropFiles.splice(index, 1)
     },
-    showExistingImage(file) {},
-    deleteExistingImage(index) {},
+    showExistingImage(file) {
+      return this.$cloudinary().url(file)
+    },
+    deleteExistingImage(index) {
+      this.form.images.splice(index, 1)
+    },
     uploadFileToCloudinary(file) {
       return new Promise(function (resolve, reject) {
         // Ideally these two lines would be in a .env file

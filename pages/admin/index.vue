@@ -36,11 +36,15 @@
           </b-table-column>
 
           <b-table-column v-slot="props" field="name" label="Project Name">
-            {{ props.row.title }}
+            {{ props.row.name }}
           </b-table-column>
 
           <b-table-column v-slot="props" field="summary" label="Description">
             {{ props.row.summary }}
+          </b-table-column>
+
+          <b-table-column v-slot="props" field="status" label="Status">
+            {{ props.row.progress }}0%
           </b-table-column>
 
           <b-table-column v-slot="props" custom-key="actions">
@@ -62,29 +66,7 @@
 <script>
 export default {
   data() {
-    const projects = [
-      {
-        id: '1',
-        title: 'Project 1',
-        summary:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
-      },
-      {
-        id: '2',
-        title: 'Project 2',
-        summary:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
-      },
-      {
-        id: '3',
-        title: 'Project 3',
-        summary:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
-      },
-    ]
-
     return {
-      projects,
       isEmpty: false,
       isBordered: false,
       isStriped: false,
@@ -94,6 +76,11 @@ export default {
       isLoading: false,
       hasMobileCards: true,
     }
+  },
+  computed: {
+    projects() {
+      return this.$store.getters.loadedProjects
+    },
   },
 }
 </script>

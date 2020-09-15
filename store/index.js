@@ -38,7 +38,7 @@ export const actions = {
             languages: ['HTML', 'CSS', 'Bulma', 'Buefy', 'Vue', 'Nuxt'],
             link: 'http://testlink.io',
             name: 'Project 2',
-            progress: 7,
+            progress: 6,
             summary: 'A project to hold other projects.',
           },
           {
@@ -52,7 +52,7 @@ export const actions = {
             languages: ['HTML', 'CSS', 'Bulma', 'Buefy', 'Vue', 'Nuxt'],
             link: 'http://testlink.io',
             name: 'Project 3',
-            progress: 7,
+            progress: 2,
             summary: 'A project to hold other projects.',
           },
         ])
