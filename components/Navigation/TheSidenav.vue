@@ -27,7 +27,7 @@
               tag="nuxt-link"
               to="/about"
             ></b-menu-item>
-            <b-menu-item icon="tools" :active="isActive" expanded>
+            <b-menu-item icon="tools">
               <template slot="label" slot-scope="props">
                 Projects
                 <b-icon
