@@ -1,17 +1,17 @@
 <template>
-  <div class="columns">
+  <div class="columns is-multiline">
     <!-- Repeating Cards Below  -->
     <div
       v-for="project in projects"
       :key="project.id"
-      class="column is-one-third"
+      class="column is-one-quarter"
     >
       <ProjectCard
         :id="project.id"
         :is-admin="isAdmin"
         :name="project.name"
         :summary="project.summary"
-        :thumbnail="pictureUrl(project.images[0])"
+        :thumbnail="pictureUrl(project.images)"
       />
     </div>
   </div>
@@ -43,12 +43,16 @@ export default {
     },
   },
   methods: {
-    pictureUrl(publicId) {
-      return this.$cloudinary().url(publicId, {
-        crop: 'scale',
-        width: 400,
-        height: 300,
-      })
+    pictureUrl(images) {
+      if (typeof images !== 'undefined') {
+        return this.$cloudinary().url(images[0], {
+          crop: 'scale',
+          width: 400,
+          height: 300,
+        })
+      } else {
+        return require('~/assets/images/placeholder.jpg')
+      }
     },
   },
 }

@@ -66,7 +66,7 @@
         <!-- Existing images -->
         <div
           v-for="(file, index) in form.images"
-          :key="index"
+          :key="index + '-image'"
           class="tile is-parent is-3"
         >
           <div class="tile is-child box">
@@ -85,7 +85,7 @@
         <!-- Dropped imgaes (new) -->
         <div
           v-for="(file, index) in form.dropFiles"
-          :key="index"
+          :key="index + '-dropFile'"
           class="tile is-parent is-3"
         >
           <div class="tile is-child box">
@@ -98,7 +98,6 @@
                 @click="deleteDropFile(index)"
               ></button>
             </figure>
-            <div class="is-size-7">{{ file.name }}</div>
           </div>
         </div>
       </div>
@@ -149,6 +148,7 @@ export default {
       form: this.project
         ? {
             ...this.project,
+            dropFiles: [],
           }
         : {
             description: '',
@@ -180,19 +180,24 @@ export default {
       })
     },
     saveProject() {
-      this.form.dropFiles.forEach((file) => {
-        this.uploadFileToCloudinary(file)
-          .then((fileResponse) => {
-            if (typeof fileResponse.public_id === typeof String()) {
-              this.form.images.push(fileResponse.public_id)
-            }
-          })
-          .then(() => {
-            if (this.form.images.length === this.form.dropFiles.length) {
-              this.$emit('submit', this.form)
-            }
-          })
-      })
+      const goalLength = this.form.images.length + this.form.dropFiles.length
+      if (this.form.dropFiles.length > 0) {
+        this.form.dropFiles.forEach((file) => {
+          this.uploadFileToCloudinary(file)
+            .then((fileResponse) => {
+              if (typeof fileResponse.public_id === typeof String()) {
+                this.form.images.push(fileResponse.public_id)
+              }
+            })
+            .then(() => {
+              if (this.form.images.length === goalLength) {
+                this.$emit('submit', this.form)
+              }
+            })
+        })
+      } else {
+        this.$emit('submit', this.form)
+      }
     },
     cancelProject() {
       // Cancel the post
@@ -204,8 +209,12 @@ export default {
     deleteDropFile(index) {
       this.form.dropFiles.splice(index, 1)
     },
-    showExistingImage(file) {},
-    deleteExistingImage(index) {},
+    showExistingImage(file) {
+      return this.$cloudinary().url(file)
+    },
+    deleteExistingImage(index) {
+      this.form.images.splice(index, 1)
+    },
     uploadFileToCloudinary(file) {
       return new Promise(function (resolve, reject) {
         // Ideally these two lines would be in a .env file

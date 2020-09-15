@@ -27,30 +27,45 @@
         >
           <b-table-column
             v-slot="props"
-            field="id"
-            label="ID"
+            centered
+            field="index"
+            label="No."
             width="40"
             numeric
           >
-            {{ props.row.id }}
+            {{ props.index + 1 }}
           </b-table-column>
 
           <b-table-column v-slot="props" field="name" label="Project Name">
-            {{ props.row.title }}
+            {{ props.row.name }}
           </b-table-column>
 
           <b-table-column v-slot="props" field="summary" label="Description">
             {{ props.row.summary }}
           </b-table-column>
 
-          <b-table-column v-slot="props" custom-key="actions">
-            <button class="button is-small is-light">
-              <nuxt-link :to="'/admin/' + props.row.id">
-                <b-icon icon="edit" size="is-small" type="is-primary"></b-icon
+          <b-table-column v-slot="props" field="status" label="Status" centered>
+            {{ props.row.progress * 10 }}%
+          </b-table-column>
+
+          <b-table-column
+            v-slot="props"
+            label="Actions"
+            centered
+            custom-key="actions"
+          >
+            <button class="button is-light">
+              <nuxt-link :to="'/projects/' + props.row.id">
+                <b-icon icon="eye" type="is-success"></b-icon
               ></nuxt-link>
             </button>
-            <button class="button is-small is-light" @click="delete props.row">
-              <b-icon icon="trash" size="is-small" type="is-danger"></b-icon>
+            <button class="button is-light">
+              <nuxt-link :to="'/admin/' + props.row.id">
+                <b-icon icon="edit" type="is-primary"></b-icon
+              ></nuxt-link>
+            </button>
+            <button class="button is-light" @click="deleteProject(props.row)">
+              <b-icon icon="trash" type="is-danger"></b-icon>
             </button>
           </b-table-column>
         </b-table>
@@ -62,29 +77,7 @@
 <script>
 export default {
   data() {
-    const projects = [
-      {
-        id: '1',
-        title: 'Project 1',
-        summary:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
-      },
-      {
-        id: '2',
-        title: 'Project 2',
-        summary:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
-      },
-      {
-        id: '3',
-        title: 'Project 3',
-        summary:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
-      },
-    ]
-
     return {
-      projects,
       isEmpty: false,
       isBordered: false,
       isStriped: false,
@@ -94,6 +87,18 @@ export default {
       isLoading: false,
       hasMobileCards: true,
     }
+  },
+  computed: {
+    projects() {
+      return this.$store.getters.loadedProjects
+    },
+  },
+  methods: {
+    deleteProject(project) {
+      this.$store.dispatch('deleteProject', project).then(() => {
+        this.$router.push('/admin')
+      })
+    },
   },
 }
 </script>

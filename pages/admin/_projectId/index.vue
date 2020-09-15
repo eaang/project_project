@@ -12,7 +12,7 @@
         <div class="columns">
           <div class="column"></div>
           <div class="column is-two-thirds">
-            <ProjectEditForm :project="project" />
+            <ProjectEditForm :project="project" @submit="saveProject" />
           </div>
           <div class="column"></div>
         </div>
@@ -28,26 +28,24 @@ export default {
   components: {
     ProjectEditForm,
   },
-  data() {
-    return {
-      project: {
-        name: 'The Project Project',
-        url: '/',
-        languages: [
-          'HTML',
-          'CSS',
-          'Javascript',
-          'Bulma',
-          'Buefy',
-          'Vue',
-          'Nuxt',
-        ],
-        summary: 'A project to hold all my other projects!',
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
-        dropFiles: [],
-        progress: 8,
-      },
+  async asyncData({ params, $axios }) {
+    const projectData = await $axios.$get(
+      'https://the-projects-project.firebaseio.com/projects/' +
+        params.projectId +
+        '.json'
+    )
+    if (typeof projectData.images !== 'undefined') {
+      return { project: { ...projectData, id: params.projectId } }
+    } else {
+      return { project: { ...projectData, id: params.projectId, images: [] } }
     }
+  },
+  methods: {
+    saveProject(editedProject) {
+      this.$store.dispatch('editProject', editedProject).then(() => {
+        this.$router.push('/admin')
+      })
+    },
   },
 }
 </script>

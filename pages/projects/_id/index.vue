@@ -14,13 +14,19 @@
       <div class="container">
         <div class="columns is-centered">
           <div class="column">
-            <b-carousel :indicator-inside="false">
+            <b-carousel
+              v-if="typeof project.images !== 'undefined'"
+              :indicator-inside="false"
+            >
               <b-carousel-item v-for="(publicId, i) in project.images" :key="i">
                 <span class="image" @click="isImageModalActive = true">
                   <img :src="getImgUrl(publicId)" />
                 </span>
               </b-carousel-item>
             </b-carousel>
+            <figure v-else class="image is-800x600">
+              <img src="~/assets/images/placeholder.jpg" />
+            </figure>
           </div>
 
           <div class="column">
@@ -37,14 +43,14 @@
               </b-taglist>
               <h3>Completion status</h3>
               <b-progress
-                type="is-success"
-                value="80"
+                :type="setColor(project.progress)"
+                :value="project.progress * 10"
                 format="percent"
                 size="is-large"
                 show-value
               ></b-progress>
               <h3>What is this about?</h3>
-              <p class="project-info">
+              <p class="pre-formatted project-info">
                 {{ project.description }}
               </p>
               <h3>
@@ -60,23 +66,13 @@
 
 <script>
 export default {
-  asyncData(context, callback) {
-    callback(null, {
-      project: {
-        id: '1',
-        description: 'A project to hold other projects.',
-        github: '',
-        images: [
-          'projects/gzmpo4abib15yesjaeep',
-          'projects/sh2dnhcx9nqzypl7ysqw',
-        ],
-        languages: ['HTML', 'CSS', 'Bulma', 'Buefy', 'Vue', 'Nuxt'],
-        link: 'http://testlink.io',
-        name: 'The Project of Projects',
-        progress: 7,
-        summary: 'A project to hold other projects.',
-      },
-    })
+  async asyncData({ params, $axios }) {
+    const projectData = await $axios.$get(
+      'https://the-projects-project.firebaseio.com/projects/' +
+        params.id +
+        '.json'
+    )
+    return { project: projectData }
   },
   data() {
     return {
@@ -90,6 +86,14 @@ export default {
         width: 800,
         height: 600,
       })
+    },
+    setColor(status) {
+      if (status > 2.5 && status < 7.5) {
+        return 'is-warning'
+      } else if (status >= 7.5) {
+        return 'is-success'
+      }
+      return 'is-danger'
     },
     switchGallery(value) {
       this.gallery = value
@@ -109,5 +113,8 @@ export default {
 }
 .al img {
   filter: grayscale(100%);
+}
+.pre-formatted {
+  white-space: pre-line;
 }
 </style>
