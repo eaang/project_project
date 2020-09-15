@@ -9,7 +9,8 @@ export default {
    ** See https://nuxtjs.org/api/configuration-head
    */
   head: {
-    title: 'Projects Project',
+    title: 'Home',
+    titleTemplate: 'The Project of Projects - %s',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -30,6 +31,10 @@ export default {
   /*
    ** Global CSS
    */
+  loading: {
+    color: '#EA7638',
+    height: '4px',
+  },
   css: ['@/assets/sass/main.scss'],
   /*
    ** Plugins to load before mounting the App

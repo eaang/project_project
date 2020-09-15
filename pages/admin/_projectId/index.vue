@@ -41,11 +41,15 @@ export default {
     }
   },
   methods: {
-    saveProject(editedProject) {
-      this.$store.dispatch('editProject', editedProject).then(() => {
-        this.$router.push('/admin')
-      })
+    async saveProject(editedProject) {
+      await this.$store.dispatch('editProject', editedProject)
+      this.$router.push('/admin')
     },
+  },
+  head() {
+    return {
+      title: this.project.name,
+    }
   },
 }
 </script>

@@ -49,7 +49,9 @@
             <div class="content">
               <h3>What is this about?</h3>
               <!-- eslint-disable-next-line prettier/prettier -->
-              <p class="pre-formatted project-info">{{ project.description }}</p>
+              <p class="pre-formatted project-info">
+                {{ project.description }}
+              </p>
               <h3>Languages used</h3>
               <b-taglist>
                 <b-tag
@@ -107,7 +109,7 @@ export default {
       return format(Date.parse(this.project.createdOn), 'P, p')
     },
     updatedDate() {
-      return format(Date.parse(this.project.updatedOn), 'P, p')
+      return format(Date.parse(this.project.editedOn), 'P, p')
     },
   },
   methods: {
@@ -134,6 +136,11 @@ export default {
         return document.documentElement.classList.remove('is-clipped')
       }
     },
+  },
+  head() {
+    return {
+      title: this.project.name,
+    }
   },
 }
 </script>

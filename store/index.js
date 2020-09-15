@@ -62,12 +62,20 @@ export const actions = {
         vuexContext.commit('addProject', { ...createdProject, id: projectId })
       })
   },
-  editProject(vuexContext, editedProject) {
+  async editProject(vuexContext, editedProject) {
     editedProject.editedOn = new Date()
+    const editedProjectId = editedProject.name
+      .replace(/([a-z])([A-Z])/g, '$1-$2')
+      .replace(/\s+/g, '-')
+      .toLowerCase()
+    if (editedProjectId !== editedProject.id) {
+      await vuexContext.dispatch('deleteProject', editedProject)
+      editedProject.id = editedProjectId
+    }
     return this.$axios
       .$put(
         'https://the-projects-project.firebaseio.com/projects/' +
-          editedProject.id +
+          editedProjectId +
           '.json',
         editedProject
       )

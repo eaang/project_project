@@ -33,6 +33,11 @@ export default {
       })
     },
   },
+  head() {
+    return {
+      title: 'New project',
+    }
+  },
 }
 </script>
 

@@ -34,6 +34,11 @@ export default {
       return this.$store.getters.loadedProjects
     },
   },
+  head() {
+    return {
+      title: 'All projects',
+    }
+  },
 }
 </script>
 

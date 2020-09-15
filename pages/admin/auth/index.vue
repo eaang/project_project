@@ -59,6 +59,11 @@ export default {
       // Swap to signing up mode
     },
   },
+  head() {
+    return {
+      title: 'Log in or create account',
+    }
+  },
 }
 </script>
 
