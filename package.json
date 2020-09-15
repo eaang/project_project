@@ -20,6 +20,7 @@
     "@nuxtjs/dotenv": "^1.4.1",
     "buefy": "^0.9.3",
     "cloudinary": "^1.23.0",
+    "date-fns": "^2.16.1",
     "nuxt": "^2.14.0",
     "nuxt-fontawesome": "^0.4.0",
     "vue-carousel": "^0.18.0",

@@ -46,7 +46,7 @@ export default {
     pictureUrl(images) {
       if (typeof images !== 'undefined') {
         return this.$cloudinary().url(images[0], {
-          crop: 'scale',
+          crop: 'fill',
           width: 400,
           height: 300,
         })

@@ -41,9 +41,12 @@
                 tag="nuxt-link"
                 to="/projects"
               ></b-menu-item>
-              <b-menu-item label="Project 1"></b-menu-item>
-              <b-menu-item label="Project 2"></b-menu-item>
-              <b-menu-item label="Project 3"></b-menu-item>
+              <nuxt-link
+                v-for="project in loadedProjects"
+                :key="project.id"
+                :to="'/projects/' + project.id"
+                ><b-menu-item :label="project.name"></b-menu-item
+              ></nuxt-link>
             </b-menu-item>
           </b-menu-list>
           <b-menu-list label="Actions">
@@ -83,6 +86,9 @@ export default {
       set() {
         return false
       },
+    },
+    loadedProjects() {
+      return this.$store.getters.loadedProjects
     },
   },
 }

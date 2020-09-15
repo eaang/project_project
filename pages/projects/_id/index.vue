@@ -14,23 +14,42 @@
       <div class="container">
         <div class="columns is-centered">
           <div class="column">
-            <b-carousel
-              v-if="typeof project.images !== 'undefined'"
-              :indicator-inside="false"
-            >
-              <b-carousel-item v-for="(publicId, i) in project.images" :key="i">
-                <span class="image" @click="isImageModalActive = true">
-                  <img :src="getImgUrl(publicId)" />
-                </span>
-              </b-carousel-item>
-            </b-carousel>
-            <figure v-else class="image is-800x600">
-              <img src="~/assets/images/placeholder.jpg" />
-            </figure>
+            <!-- Displays a single image, carousel, or a 'no image' placeholder -->
+            <div class="mb-3">
+              <b-carousel
+                v-if="
+                  typeof project.images !== 'undefined' &&
+                  project.images.length > 1
+                "
+                :indicator-inside="false"
+              >
+                <b-carousel-item
+                  v-for="(publicId, i) in project.images"
+                  :key="i"
+                >
+                  <span class="image" @click="isImageModalActive = true">
+                    <img :src="getImgUrl(publicId)" />
+                  </span>
+                </b-carousel-item>
+              </b-carousel>
+              <figure
+                v-else-if="project.images.length === 1"
+                class="image is-800x600"
+              >
+                <img :src="getImgUrl(project.images[0])" />
+              </figure>
+              <figure v-else class="image is-800x600">
+                <img src="~/assets/images/placeholder.jpg" />
+              </figure>
+            </div>
+            <b-button type="is-primary" expanded>Visit Project</b-button>
           </div>
 
           <div class="column">
             <div class="content">
+              <h3>What is this about?</h3>
+              <!-- eslint-disable-next-line prettier/prettier -->
+              <p class="pre-formatted project-info">{{ project.description }}</p>
               <h3>Languages used</h3>
               <b-taglist>
                 <b-tag
@@ -49,13 +68,16 @@
                 size="is-large"
                 show-value
               ></b-progress>
-              <h3>What is this about?</h3>
-              <p class="pre-formatted project-info">
-                {{ project.description }}
-              </p>
-              <h3>
-                <b-button type="is-primary" expanded>Visit Project</b-button>
-              </h3>
+              <div class="columns is-gapless">
+                <div class="column">
+                  <h3>Created on</h3>
+                  <p>{{ createdDate }}</p>
+                </div>
+                <div class="column">
+                  <h3>Last updated</h3>
+                  <p>{{ updatedDate }}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -65,6 +87,7 @@
 </template>
 
 <script>
+import { format } from 'date-fns'
 export default {
   async asyncData({ params, $axios }) {
     const projectData = await $axios.$get(
@@ -79,10 +102,18 @@ export default {
       gallery: false,
     }
   },
+  computed: {
+    createdDate() {
+      return format(Date.parse(this.project.createdOn), 'P, p')
+    },
+    updatedDate() {
+      return format(Date.parse(this.project.updatedOn), 'P, p')
+    },
+  },
   methods: {
     getImgUrl(publicId) {
       return this.$cloudinary().url(publicId, {
-        crop: 'scale',
+        crop: 'fill',
         width: 800,
         height: 600,
       })

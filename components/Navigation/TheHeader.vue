@@ -15,9 +15,12 @@
         <nuxt-link class="navbar-link" to="/projects">My projects</nuxt-link>
 
         <div class="navbar-dropdown is-boxed">
-          <b-navbar-item>Project 1</b-navbar-item>
-          <b-navbar-item>Project 2</b-navbar-item>
-          <b-navbar-item>Project 3</b-navbar-item>
+          <nuxt-link
+            v-for="project in loadedProjects"
+            :key="project.id"
+            :to="'/projects/' + project.id"
+            ><b-navbar-item> {{ project.name }}</b-navbar-item></nuxt-link
+          >
         </div>
       </div>
     </template>
@@ -39,6 +42,11 @@ import TheSidenavToggle from '@/components/Navigation/TheSidenavToggle.vue'
 export default {
   components: {
     TheSidenavToggle,
+  },
+  computed: {
+    loadedProjects() {
+      return this.$store.getters.loadedProjects
+    },
   },
 }
 </script>

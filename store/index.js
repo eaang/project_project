@@ -46,7 +46,11 @@ export const actions = {
       .replace(/([a-z])([A-Z])/g, '$1-$2')
       .replace(/\s+/g, '-')
       .toLowerCase()
-    const createdProject = project
+    const createdProject = {
+      ...project,
+      createdOn: new Date(),
+      updatedOn: new Date(),
+    }
     return this.$axios
       .$put(
         'https://the-projects-project.firebaseio.com/projects/' +
@@ -59,6 +63,7 @@ export const actions = {
       })
   },
   editProject(vuexContext, editedProject) {
+    editedProject.editedOn = new Date()
     return this.$axios
       .$put(
         'https://the-projects-project.firebaseio.com/projects/' +
