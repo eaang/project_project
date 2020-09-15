@@ -54,7 +54,7 @@ export const actions = {
   },
   editProject(vuexContext, editedProject) {
     return this.$axios
-      .$patch(
+      .$put(
         'https://the-projects-project.firebaseio.com/projects/' +
           editedProject.id +
           '.json',

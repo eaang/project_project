@@ -34,7 +34,12 @@ export default {
         params.projectId +
         '.json'
     )
-    return { project: projectData }
+    if (typeof projectData.images !== 'undefined') {
+      return { project: projectData }
+    } else {
+      projectData.images = []
+      return { project: projectData }
+    }
   },
   methods: {
     saveProject(editedProject) {
