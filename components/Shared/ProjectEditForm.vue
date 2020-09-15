@@ -66,7 +66,7 @@
         <!-- Existing images -->
         <div
           v-for="(file, index) in form.images"
-          :key="index"
+          :key="index + '-image'"
           class="tile is-parent is-3"
         >
           <div class="tile is-child box">
@@ -85,7 +85,7 @@
         <!-- Dropped imgaes (new) -->
         <div
           v-for="(file, index) in form.dropFiles"
-          :key="index"
+          :key="index + '-dropFile'"
           class="tile is-parent is-3"
         >
           <div class="tile is-child box">
@@ -180,25 +180,20 @@ export default {
       })
     },
     saveProject() {
-      if (this.form.dropFiles.length > 0) {
-        const goalLength =
-          this.form.dropFiles.length + this.form.images.goalLength
-        this.form.dropFiles.forEach((file) => {
-          this.uploadFileToCloudinary(file)
-            .then((fileResponse) => {
-              if (typeof fileResponse.public_id === typeof String()) {
-                this.form.images.push(fileResponse.public_id)
-              }
-            })
-            .then(() => {
-              if (this.form.images.length === goalLength) {
-                this.$emit('submit', this.form)
-              }
-            })
-        })
-      } else {
-        this.$emit('submit', this.form)
-      }
+      const goalLength = this.form.images.length + this.form.dropFiles.length
+      this.form.dropFiles.forEach((file) => {
+        this.uploadFileToCloudinary(file)
+          .then((fileResponse) => {
+            if (typeof fileResponse.public_id === typeof String()) {
+              this.form.images.push(fileResponse.public_id)
+            }
+          })
+          .then(() => {
+            if (this.form.images.length === goalLength) {
+              this.$emit('submit', this.form)
+            }
+          })
+      })
     },
     cancelProject() {
       // Cancel the post
