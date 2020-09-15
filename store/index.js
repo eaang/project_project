@@ -104,7 +104,11 @@ export const actions = {
 
 export const getters = {
   loadedProjects(state) {
-    return state.loadedProjects
+    const alphabeticalOrder = state.loadedProjects
+      .slice()
+      .sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0))
+
+    return alphabeticalOrder
   },
   latestProjects(state) {
     return state.loadedProjects
