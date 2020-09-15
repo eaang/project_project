@@ -32,7 +32,7 @@
                   :key="language"
                   type="is-primary"
                 >
-                  {{ language }}
+                  {{ project.language }}
                 </b-tag>
               </b-taglist>
               <h3>Completion status</h3>
@@ -60,23 +60,13 @@
 
 <script>
 export default {
-  asyncData(context, callback) {
-    callback(null, {
-      project: {
-        id: '1',
-        description: 'A project to hold other projects.',
-        github: '',
-        images: [
-          'projects/gzmpo4abib15yesjaeep',
-          'projects/sh2dnhcx9nqzypl7ysqw',
-        ],
-        languages: ['HTML', 'CSS', 'Bulma', 'Buefy', 'Vue', 'Nuxt'],
-        link: 'http://testlink.io',
-        name: 'The Project of Projects',
-        progress: 7,
-        summary: 'A project to hold other projects.',
-      },
-    })
+  async asyncData({ params, $axios }) {
+    const projectData = await $axios.$get(
+      'https://the-projects-project.firebaseio.com/projects/' +
+        params.id +
+        '.json'
+    )
+    return { project: projectData }
   },
   data() {
     return {
