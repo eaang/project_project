@@ -181,19 +181,23 @@ export default {
     },
     saveProject() {
       const goalLength = this.form.images.length + this.form.dropFiles.length
-      this.form.dropFiles.forEach((file) => {
-        this.uploadFileToCloudinary(file)
-          .then((fileResponse) => {
-            if (typeof fileResponse.public_id === typeof String()) {
-              this.form.images.push(fileResponse.public_id)
-            }
-          })
-          .then(() => {
-            if (this.form.images.length === goalLength) {
-              this.$emit('submit', this.form)
-            }
-          })
-      })
+      if (this.form.dropFiles.length > 0) {
+        this.form.dropFiles.forEach((file) => {
+          this.uploadFileToCloudinary(file)
+            .then((fileResponse) => {
+              if (typeof fileResponse.public_id === typeof String()) {
+                this.form.images.push(fileResponse.public_id)
+              }
+            })
+            .then(() => {
+              if (this.form.images.length === goalLength) {
+                this.$emit('submit', this.form)
+              }
+            })
+        })
+      } else {
+        this.$emit('submit', this.form)
+      }
     },
     cancelProject() {
       // Cancel the post
