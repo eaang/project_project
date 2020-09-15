@@ -15,16 +15,11 @@
         <div class="columns is-centered">
           <div class="column">
             <b-carousel :indicator-inside="false">
-              <b-carousel-item v-for="(item, i) in 4" :key="i">
+              <b-carousel-item v-for="(publicId, i) in project.images" :key="i">
                 <span class="image" @click="isImageModalActive = true">
-                  <img :src="getImgUrl(i)" />
+                  <img :src="getImgUrl(publicId)" />
                 </span>
               </b-carousel-item>
-              <template slot="indicators" slot-scope="props">
-                <span class="al image">
-                  <img :src="getImgUrl(props.i)" :title="props.i" />
-                </span>
-              </template>
             </b-carousel>
           </div>
 
@@ -65,14 +60,21 @@
 
 <script>
 export default {
-  asyncData(callback) {
+  asyncData(context, callback) {
     callback(null, {
       project: {
         id: '1',
-        title: 'Project of Projects',
-        description: 'Description here',
-        language: ['one', 'two', 'three'],
-        summary: 'Summary here',
+        description: 'A project to hold other projects.',
+        github: '',
+        images: [
+          'projects/gzmpo4abib15yesjaeep',
+          'projects/sh2dnhcx9nqzypl7ysqw',
+        ],
+        languages: ['HTML', 'CSS', 'Bulma', 'Buefy', 'Vue', 'Nuxt'],
+        link: 'http://testlink.io',
+        name: 'The Project of Projects',
+        progress: 7,
+        summary: 'A project to hold other projects.',
       },
     })
   },
@@ -82,9 +84,12 @@ export default {
     }
   },
   methods: {
-    getImgUrl(value) {
-      value += 50
-      return `https://picsum.photos/id/10${value}/800/600`
+    getImgUrl(publicId) {
+      return this.$cloudinary().url(publicId, {
+        crop: 'scale',
+        width: 800,
+        height: 600,
+      })
     },
     switchGallery(value) {
       this.gallery = value
