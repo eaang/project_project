@@ -9,20 +9,12 @@
       <TheSidenavToggle @toggle="$emit('toggle-sidenav')" />
     </template>
     <template slot="start">
-      <nuxt-link class="navbar-item" to="/" exact>Home</nuxt-link>
-      <nuxt-link class="navbar-item" to="/about">About me</nuxt-link>
-      <div class="navbar-item has-dropdown is-hoverable">
-        <nuxt-link class="navbar-link" to="/projects">My projects</nuxt-link>
-
-        <div class="navbar-dropdown is-boxed">
-          <nuxt-link
-            v-for="project in loadedProjects"
-            :key="project.id"
-            :to="'/projects/' + project.id"
-            ><b-navbar-item> {{ project.name }}</b-navbar-item></nuxt-link
-          >
-        </div>
-      </div>
+      <b-navbar-item href="#"> Home </b-navbar-item>
+      <b-navbar-item href="#"> Documentation </b-navbar-item>
+      <b-navbar-dropdown label="Info">
+        <b-navbar-item href="#"> About </b-navbar-item>
+        <b-navbar-item href="#"> Contact </b-navbar-item>
+      </b-navbar-dropdown>
     </template>
 
     <template slot="end">

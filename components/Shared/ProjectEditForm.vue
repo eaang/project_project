@@ -124,6 +124,7 @@ const data = [
   'React',
   'Buefy',
   'Bulma',
+  'Bootstrap',
   'Nuxt',
 ]
 

@@ -17,10 +17,7 @@
             <!-- Displays a single image, carousel, or a 'no image' placeholder -->
             <div class="mb-3">
               <b-carousel
-                v-if="
-                  typeof project.images !== 'undefined' &&
-                  project.images.length > 1
-                "
+                v-if="project.images.length > 1"
                 :indicator-inside="false"
               >
                 <b-carousel-item
@@ -97,7 +94,11 @@ export default {
         params.id +
         '.json'
     )
-    return { project: projectData }
+    if (typeof projectData.images === 'undefined') {
+      return { project: { ...projectData, images: [] } }
+    } else {
+      return { project: projectData }
+    }
   },
   data() {
     return {
@@ -109,7 +110,7 @@ export default {
       return format(Date.parse(this.project.createdOn), 'P, p')
     },
     updatedDate() {
-      return format(Date.parse(this.project.editedOn), 'P, p')
+      return format(Date.parse(this.project.updatedOn), 'P, p')
     },
   },
   methods: {

@@ -5,8 +5,8 @@
     <!-- All Projects -->
     <section class="section">
       <div class="container">
-        <p class="title">All Projects</p>
-        <ProjectList :projects="loadedProjects" />
+        <p class="title">Latest Projects</p>
+        <ProjectList :projects="latestProjects" />
       </div>
     </section>
   </div>
@@ -33,8 +33,8 @@ export default {
     }
   },
   computed: {
-    loadedProjects() {
-      return this.$store.getters.loadedProjects
+    latestProjects() {
+      return this.$store.getters.latestProjects
     },
   },
 }

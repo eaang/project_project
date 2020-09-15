@@ -25,13 +25,15 @@ export const mutations = {
 
 export const actions = {
   async nuxtServerInit(vuexContext, context) {
+    const projectArray = []
     await this.$axios
       .$get('https://the-projects-project.firebaseio.com/projects.json')
       .then((res) => {
-        const projectArray = []
         for (const key in res) {
-          projectArray.push({ ...res[key], id: key })
+          projectArray.push({ ...res[key] })
         }
+      })
+      .then(() => {
         vuexContext.commit('setProjects', projectArray)
       })
       .catch((e) => {
@@ -50,6 +52,7 @@ export const actions = {
       ...project,
       createdOn: new Date(),
       updatedOn: new Date(),
+      id: projectId,
     }
     return this.$axios
       .$put(
@@ -59,11 +62,11 @@ export const actions = {
         createdProject
       )
       .then((res) => {
-        vuexContext.commit('addProject', { ...createdProject, id: projectId })
+        vuexContext.commit('addProject', { ...createdProject })
       })
   },
   async editProject(vuexContext, editedProject) {
-    editedProject.editedOn = new Date()
+    editedProject.updatedOn = new Date()
     const editedProjectId = editedProject.name
       .replace(/([a-z])([A-Z])/g, '$1-$2')
       .replace(/\s+/g, '-')
@@ -71,17 +74,19 @@ export const actions = {
     if (editedProjectId !== editedProject.id) {
       await vuexContext.dispatch('deleteProject', editedProject)
       editedProject.id = editedProjectId
+      return vuexContext.dispatch('addProject', editedProject)
+    } else {
+      return this.$axios
+        .$put(
+          'https://the-projects-project.firebaseio.com/projects/' +
+            editedProjectId +
+            '.json',
+          editedProject
+        )
+        .then((res) => {
+          vuexContext.commit('editProject', editedProject)
+        })
     }
-    return this.$axios
-      .$put(
-        'https://the-projects-project.firebaseio.com/projects/' +
-          editedProjectId +
-          '.json',
-        editedProject
-      )
-      .then((res) => {
-        vuexContext.commit('editProject', editedProject)
-      })
   },
   deleteProject(vuexContext, deletedProject) {
     return this.$axios
@@ -100,5 +105,11 @@ export const actions = {
 export const getters = {
   loadedProjects(state) {
     return state.loadedProjects
+  },
+  latestProjects(state) {
+    return state.loadedProjects
+      .slice()
+      .sort((a, b) => Date.parse(b.createdOn) - Date.parse(a.createdOn))
+      .slice(0, 4)
   },
 }
