@@ -46,8 +46,8 @@ export default {
     pictureUrl(publicId) {
       return this.$cloudinary().url(publicId, {
         crop: 'scale',
-        width: 640,
-        height: 480,
+        width: 400,
+        height: 300,
       })
     },
   },
