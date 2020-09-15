@@ -35,10 +35,9 @@ export default {
         '.json'
     )
     if (typeof projectData.images !== 'undefined') {
-      return { project: projectData }
+      return { project: { ...projectData, id: params.projectId } }
     } else {
-      projectData.images = []
-      return { project: projectData }
+      return { project: { ...projectData, id: params.projectId, images: [] } }
     }
   },
   methods: {
