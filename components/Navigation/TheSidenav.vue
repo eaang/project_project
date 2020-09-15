@@ -27,7 +27,7 @@
               tag="nuxt-link"
               to="/about"
             ></b-menu-item>
-            <b-menu-item icon="settings" :active="isActive" expanded>
+            <b-menu-item icon="tools" :active="isActive" expanded>
               <template slot="label" slot-scope="props">
                 Projects
                 <b-icon
@@ -35,6 +35,12 @@
                   :icon="props.expanded ? 'angle-down' : 'angle-up'"
                 ></b-icon>
               </template>
+              <b-menu-item
+                label="All Projects"
+                icon="sitemap"
+                tag="nuxt-link"
+                to="/projects"
+              ></b-menu-item>
               <li v-for="project in loadedProjects" :key="project.id">
                 <nuxt-link :to="'/projects/' + project.id">{{
                   project.name
