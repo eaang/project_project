@@ -4,7 +4,7 @@
     <div class="card-image">
       <nuxt-link :to="postLink">
         <figure class="image is-4by3">
-          <img :src="thumbnail" :alt="title" /></figure
+          <img :src="thumbnail" :alt="name" /></figure
       ></nuxt-link>
     </div>
     <b-collapse class="card" animation="slide" :aria-id="id" :open="false">
@@ -15,7 +15,7 @@
         role="button"
         :aria-controls="id"
       >
-        <p class="card-header-title">{{ title }}</p>
+        <p class="card-header-title">{{ name }}</p>
         <a class="card-header-icon">
           <b-icon :icon="props.open ? 'angle-down' : 'angle-up'"> </b-icon>
         </a>
@@ -39,7 +39,7 @@ export default {
       type: String,
       required: true,
     },
-    title: {
+    name: {
       type: String,
       required: true,
     },

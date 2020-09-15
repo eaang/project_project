@@ -17,24 +17,45 @@ const createStore = () => {
             vuexContext.commit('setProjects', [
               {
                 id: '1',
-                title: 'Project 1',
-                summary:
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
-                thumbnail: 'https://picsum.photos/640/480/',
+                description: 'A project to hold other projects.',
+                github: '',
+                images: [
+                  'projects/gzmpo4abib15yesjaeep',
+                  'projects/sh2dnhcx9nqzypl7ysqw',
+                ],
+                languages: ['HTML', 'CSS', 'Bulma', 'Buefy', 'Vue', 'Nuxt'],
+                link: 'http://testlink.io',
+                name: 'The Project of Projects',
+                progress: 7,
+                summary: 'A project to hold other projects.',
               },
               {
                 id: '2',
-                title: 'Project 2',
-                summary:
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
-                thumbnail: 'https://picsum.photos/640/480/',
+                description: 'A project to hold other projects.',
+                github: '',
+                images: [
+                  'projects/gzmpo4abib15yesjaeep',
+                  'projects/sh2dnhcx9nqzypl7ysqw',
+                ],
+                languages: ['HTML', 'CSS', 'Bulma', 'Buefy', 'Vue', 'Nuxt'],
+                link: 'http://testlink.io',
+                name: 'Project 2',
+                progress: 7,
+                summary: 'A project to hold other projects.',
               },
               {
                 id: '3',
-                title: 'Project 3',
-                summary:
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
-                thumbnail: 'https://picsum.photos/640/480/',
+                description: 'A project to hold other projects.',
+                github: '',
+                images: [
+                  'projects/gzmpo4abib15yesjaeep',
+                  'projects/sh2dnhcx9nqzypl7ysqw',
+                ],
+                languages: ['HTML', 'CSS', 'Bulma', 'Buefy', 'Vue', 'Nuxt'],
+                link: 'http://testlink.io',
+                name: 'Project 3',
+                progress: 7,
+                summary: 'A project to hold other projects.',
               },
             ])
             resolve()

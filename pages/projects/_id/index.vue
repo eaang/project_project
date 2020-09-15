@@ -65,24 +65,14 @@
 
 <script>
 export default {
-  asyncData(context, callback) {
+  asyncData(callback) {
     callback(null, {
       project: {
-        name: 'The Project Project',
-        link: '/',
-        languages: [
-          'HTML',
-          'CSS',
-          'Javascript',
-          'Bulma',
-          'Buefy',
-          'Vue',
-          'Nuxt',
-        ],
-        summary: 'A project to hold all my other projects!',
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
-        dropFiles: [],
-        progress: 8,
+        id: '1',
+        title: 'Project of Projects',
+        description: 'Description here',
+        language: ['one', 'two', 'three'],
+        summary: 'Summary here',
       },
     })
   },

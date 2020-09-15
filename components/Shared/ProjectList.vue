@@ -9,9 +9,9 @@
       <ProjectCard
         :id="project.id"
         :is-admin="isAdmin"
-        :title="project.title"
+        :name="project.name"
         :summary="project.summary"
-        :thumbnail="project.thumbnail"
+        :thumbnail="pictureUrl(project.images[0])"
       />
     </div>
   </div>
@@ -40,6 +40,15 @@ export default {
           thumbnail: 'https://picsum.photos/640/480/',
         },
       ],
+    },
+  },
+  methods: {
+    pictureUrl(publicId) {
+      return this.$cloudinary().url(publicId, {
+        crop: 'scale',
+        width: 640,
+        height: 480,
+      })
     },
   },
 }

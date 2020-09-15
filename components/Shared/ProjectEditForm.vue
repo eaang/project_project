@@ -60,8 +60,29 @@
         </section>
       </b-upload>
     </b-field>
-    <b-field v-if="form.dropFiles.length > 0">
+    <!-- Tiles to show uploaded images (first displays existing, then uploded images) -->
+    <b-field v-if="form.dropFiles.length > 0 || form.images.length > 0">
       <div class="tile is-ancestor" style="flex-wrap: wrap">
+        <!-- Existing images -->
+        <div
+          v-for="(file, index) in form.images"
+          :key="index"
+          class="tile is-parent is-3"
+        >
+          <div class="tile is-child box">
+            <figure class="image">
+              <img :src="showExistingImage(file)" />
+              <button
+                style="position: absolute; top: 0; right: 0"
+                class="delete is-small"
+                type="button"
+                @click="deleteExistingImage(index)"
+              ></button>
+            </figure>
+            <div class="is-size-7">{{ file.name }}</div>
+          </div>
+        </div>
+        <!-- Dropped imgaes (new) -->
         <div
           v-for="(file, index) in form.dropFiles"
           :key="index"
@@ -158,9 +179,6 @@ export default {
         return option.toString().toLowerCase().includes(text.toLowerCase())
       })
     },
-    deleteDropFile(index) {
-      this.form.dropFiles.splice(index, 1)
-    },
     saveProject() {
       this.form.dropFiles.forEach((file) => {
         this.uploadFileToCloudinary(file)
@@ -183,6 +201,11 @@ export default {
     showImage(file) {
       return URL.createObjectURL(file)
     },
+    deleteDropFile(index) {
+      this.form.dropFiles.splice(index, 1)
+    },
+    showExistingImage(file) {},
+    deleteExistingImage(index) {},
     uploadFileToCloudinary(file) {
       return new Promise(function (resolve, reject) {
         // Ideally these two lines would be in a .env file
