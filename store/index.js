@@ -9,56 +9,19 @@ export const mutations = {
 }
 
 export const actions = {
-  nuxtServerInit(vuexContext, context) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        vuexContext.commit('setProjects', [
-          {
-            id: '1',
-            description: 'A project to hold other projects.',
-            github: '',
-            images: [
-              'projects/gzmpo4abib15yesjaeep',
-              'projects/sh2dnhcx9nqzypl7ysqw',
-            ],
-            languages: ['HTML', 'CSS', 'Bulma', 'Buefy', 'Vue', 'Nuxt'],
-            link: 'http://testlink.io',
-            name: 'The Project of Projects',
-            progress: 7,
-            summary: 'A project to hold other projects.',
-          },
-          {
-            id: '2',
-            description: 'A project to hold other projects.',
-            github: '',
-            images: [
-              'projects/gzmpo4abib15yesjaeep',
-              'projects/sh2dnhcx9nqzypl7ysqw',
-            ],
-            languages: ['HTML', 'CSS', 'Bulma', 'Buefy', 'Vue', 'Nuxt'],
-            link: 'http://testlink.io',
-            name: 'Project 2',
-            progress: 6,
-            summary: 'A project to hold other projects.',
-          },
-          {
-            id: '3',
-            description: 'A project to hold other projects.',
-            github: '',
-            images: [
-              'projects/gzmpo4abib15yesjaeep',
-              'projects/sh2dnhcx9nqzypl7ysqw',
-            ],
-            languages: ['HTML', 'CSS', 'Bulma', 'Buefy', 'Vue', 'Nuxt'],
-            link: 'http://testlink.io',
-            name: 'Project 3',
-            progress: 2,
-            summary: 'A project to hold other projects.',
-          },
-        ])
-        resolve()
-      }, 1000)
-    })
+  async nuxtServerInit(vuexContext, context) {
+    await this.$axios
+      .$get('https://the-projects-project.firebaseio.com/projects.json')
+      .then((res) => {
+        const projectArray = []
+        for (const key in res) {
+          projectArray.push({ ...res[key], id: key })
+        }
+        vuexContext.commit('setProjects', projectArray)
+      })
+      .catch((e) => {
+        context.error(e)
+      })
   },
   setProjects(vuexContext, projects) {
     vuexContext.commit('setProjects', projects)
