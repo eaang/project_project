@@ -43,7 +43,7 @@ export default {
   methods: {
     async saveProject(editedProject) {
       await this.$store.dispatch('editProject', editedProject)
-      this.$router.push('/admin')
+      this.$router.push('/projects/' + editedProject.id)
     },
   },
   head() {

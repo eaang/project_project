@@ -1,8 +1,7 @@
 <template>
   <div class="Site">
-    <TheHeader />
-    <!-- @toggle-sidenav="toggleSidenav" -->
-    <!-- <TheSidenav :status="displaySidenav" @close="toggleSidenav" /> -->
+    <TheHeader @toggle-sidenav="toggleSidenav" />
+    <TheSidenav :status="displaySidenav" @close="toggleSidenav" />
     <Nuxt class="Site-content" />
     <TheFooter />
   </div>

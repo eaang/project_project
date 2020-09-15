@@ -14,7 +14,7 @@
       <nuxt-link tag="b-navbar-item" to="/admin">Admin</nuxt-link>
       <div class="navbar-item has-dropdown is-hoverable">
         <nuxt-link tag="a" class="navbar-link" to="/projects">
-          Projects
+          All Projects
         </nuxt-link>
         <div class="navbar-dropdown">
           <nuxt-link
