@@ -4,7 +4,7 @@
     <div
       v-for="project in projects"
       :key="project.id"
-      class="column is-one-third"
+      class="column is-one-quarter"
     >
       <ProjectCard
         :id="project.id"
@@ -51,7 +51,7 @@ export default {
           height: 300,
         })
       } else {
-        return 'https://picsum.photos/400/300/'
+        return require('~/assets/images/placeholder.jpg')
       }
     },
   },

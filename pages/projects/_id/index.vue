@@ -14,13 +14,19 @@
       <div class="container">
         <div class="columns is-centered">
           <div class="column">
-            <b-carousel :indicator-inside="false">
+            <b-carousel
+              v-if="typeof project.images !== 'undefined'"
+              :indicator-inside="false"
+            >
               <b-carousel-item v-for="(publicId, i) in project.images" :key="i">
                 <span class="image" @click="isImageModalActive = true">
                   <img :src="getImgUrl(publicId)" />
                 </span>
               </b-carousel-item>
             </b-carousel>
+            <figure v-else class="image is-800x600">
+              <img src="~/assets/images/placeholder.jpg" />
+            </figure>
           </div>
 
           <div class="column">
