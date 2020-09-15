@@ -1,5 +1,5 @@
 <template>
-  <div class="columns">
+  <div class="columns is-multiline">
     <!-- Repeating Cards Below  -->
     <div
       v-for="project in projects"

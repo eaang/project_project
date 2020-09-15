@@ -36,18 +36,33 @@ export const actions = {
     vuexContext.commit('setProjects', projects)
   },
   addProject(vuexContext, project) {
+    const projectId = project.name
+      .replace(/([a-z])([A-Z])/g, '$1-$2')
+      .replace(/\s+/g, '-')
+      .toLowerCase()
     const createdProject = project
     return this.$axios
-      .$post(
-        'https://the-projects-project.firebaseio.com/projects.json',
+      .$put(
+        'https://the-projects-project.firebaseio.com/projects/' +
+          projectId +
+          '.json',
         createdProject
       )
       .then((res) => {
-        vuexContext.commit('addProject', { ...createdProject, id: res.name })
+        vuexContext.commit('addProject', { ...createdProject, id: projectId })
       })
   },
   editProject(vuexContext, editedProject) {
-    vuexContext.commit('editProject', editedProject)
+    return this.$axios
+      .$put(
+        'https://the-projects-project.firebaseio.com/projects/' +
+          editedProject.id +
+          '.json',
+        editedProject
+      )
+      .then((res) => {
+        vuexContext.commit('editProject', editedProject)
+      })
   },
 }
 

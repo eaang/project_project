@@ -37,17 +37,10 @@ export default {
     return { project: projectData }
   },
   methods: {
-    async saveProject(editedProject) {
-      await this.$axios
-        .$put(
-          'https://the-projects-project.firebaseio.com/projects/' +
-            this.$route.params.projectId +
-            '.json',
-          editedProject
-        )
-        .then((res) => {
-          this.$router.push('/admin')
-        })
+    saveProject(editedProject) {
+      this.$store.dispatch('editProject', editedProject).then(() => {
+        this.$router.push('/admin')
+      })
     },
   },
 }
