@@ -98,7 +98,6 @@
                 @click="deleteDropFile(index)"
               ></button>
             </figure>
-            <div class="is-size-7">{{ file.name }}</div>
           </div>
         </div>
       </div>
