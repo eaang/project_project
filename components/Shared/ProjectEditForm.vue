@@ -148,6 +148,7 @@ export default {
       form: this.project
         ? {
             ...this.project,
+            dropFiles: [],
           }
         : {
             description: '',
