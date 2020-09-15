@@ -53,7 +53,10 @@
                 <b-icon icon="edit" size="is-small" type="is-primary"></b-icon
               ></nuxt-link>
             </button>
-            <button class="button is-small is-light" @click="delete props.row">
+            <button
+              class="button is-small is-light"
+              @click="deleteProject(props.row)"
+            >
               <b-icon icon="trash" size="is-small" type="is-danger"></b-icon>
             </button>
           </b-table-column>
@@ -80,6 +83,13 @@ export default {
   computed: {
     projects() {
       return this.$store.getters.loadedProjects
+    },
+  },
+  methods: {
+    deleteProject(project) {
+      this.$store.dispatch('deleteProject', project).then(() => {
+        this.$router.push('/admin')
+      })
     },
   },
 }

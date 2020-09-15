@@ -15,6 +15,12 @@ export const mutations = {
     )
     state.loadedProjects[projectIndex] = editedProject
   },
+  deleteProject(state, deletedProject) {
+    const projectIndex = state.loadedProjects.findIndex(
+      (project) => project.id === deletedProject.id
+    )
+    state.loadedProjects.splice(projectIndex, 1)
+  },
 }
 
 export const actions = {
@@ -62,6 +68,18 @@ export const actions = {
       )
       .then((res) => {
         vuexContext.commit('editProject', editedProject)
+      })
+  },
+  deleteProject(vuexContext, deletedProject) {
+    return this.$axios
+      .$delete(
+        'https://the-projects-project.firebaseio.com/projects/' +
+          deletedProject.id +
+          '.json',
+        deletedProject
+      )
+      .then((res) => {
+        vuexContext.commit('deleteProject', deletedProject)
       })
   },
 }
