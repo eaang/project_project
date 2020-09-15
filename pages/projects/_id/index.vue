@@ -32,19 +32,19 @@
                   :key="language"
                   type="is-primary"
                 >
-                  {{ project.language }}
+                  {{ language }}
                 </b-tag>
               </b-taglist>
               <h3>Completion status</h3>
               <b-progress
-                type="is-success"
-                value="80"
+                :type="setColor(project.progress)"
+                :value="project.progress * 10"
                 format="percent"
                 size="is-large"
                 show-value
               ></b-progress>
               <h3>What is this about?</h3>
-              <p class="project-info">
+              <p class="pre-formatted project-info">
                 {{ project.description }}
               </p>
               <h3>
@@ -81,6 +81,14 @@ export default {
         height: 600,
       })
     },
+    setColor(status) {
+      if (status > 2.5 && status < 7.5) {
+        return 'is-warning'
+      } else if (status >= 7.5) {
+        return 'is-success'
+      }
+      return 'is-danger'
+    },
     switchGallery(value) {
       this.gallery = value
       if (value) {
@@ -99,5 +107,8 @@ export default {
 }
 .al img {
   filter: grayscale(100%);
+}
+.pre-formatted {
+  white-space: pre-line;
 }
 </style>
