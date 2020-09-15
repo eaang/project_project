@@ -12,7 +12,7 @@
         <div class="columns">
           <div class="column"></div>
           <div class="column is-two-thirds">
-            <ProjectEditForm :project="project" />
+            <ProjectEditForm :project="project" @submit="saveProject" />
           </div>
           <div class="column"></div>
         </div>
@@ -35,6 +35,16 @@ export default {
         '.json'
     )
     return { project: projectData }
+  },
+  methods: {
+    async saveProject(editedProject) {
+      await this.$axios.$put(
+        'https://the-projects-project.firebaseio.com/projects/' +
+          this.$route.params.projectId +
+          '.json',
+        editedProject
+      )
+    },
   },
 }
 </script>

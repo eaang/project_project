@@ -66,7 +66,6 @@ export default {
         params.id +
         '.json'
     )
-    console.log(projectData)
     return { project: projectData }
   },
   data() {
