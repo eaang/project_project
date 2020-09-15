@@ -28,14 +28,9 @@ export default {
   },
   methods: {
     onSubmitted(projectData) {
-      this.$axios
-        .$post(
-          'https://the-projects-project.firebaseio.com/projects.json',
-          projectData
-        )
-        .then((res) => {
-          this.$router.push('/admin')
-        })
+      this.$store.dispatch('addProject', projectData).then(() => {
+        this.$router.push('/admin')
+      })
     },
   },
 }

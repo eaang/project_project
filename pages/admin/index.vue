@@ -44,7 +44,7 @@
           </b-table-column>
 
           <b-table-column v-slot="props" field="status" label="Status">
-            {{ props.row.progress }}0%
+            {{ props.row.progress * 10 }}%
           </b-table-column>
 
           <b-table-column v-slot="props" custom-key="actions">
