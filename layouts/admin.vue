@@ -1,6 +1,6 @@
 <template>
   <div class="Site">
-    <TheHeader @toggle-sidenav="toggleSidenav" />
+    <TheAdminHeader @toggle-sidenav="toggleSidenav" />
     <TheSidenav :status="displaySidenav" @close="toggleSidenav" />
     <Nuxt class="Site-content" />
     <TheFooter />
@@ -8,13 +8,13 @@
 </template>
 
 <script>
-import TheHeader from '@/components/Navigation/TheHeader.vue'
+import TheAdminHeader from '@/components/Navigation/TheAdminHeader.vue'
 import TheSidenav from '@/components/Navigation/TheSidenav.vue'
 import TheFooter from '@/components/Navigation/TheFooter.vue'
 
 export default {
   components: {
-    TheHeader,
+    TheAdminHeader,
     TheSidenav,
     TheFooter,
   },
