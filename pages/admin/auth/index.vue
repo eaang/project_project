@@ -43,7 +43,7 @@
                 icon="lock"
                 placeholder="Password"
                 password-reveal
-                @keyup.enter="authenticateUser"
+                @keyup.native.enter="authenticateUser"
               >
               </b-input>
             </b-field>
@@ -80,14 +80,6 @@ export default {
       email: '',
       password: '',
     }
-  },
-  mounted() {
-    const vm = this
-    window.addEventListener('keyup', (event) => {
-      if (event.keyCode === 13) {
-        vm.authenticateUser()
-      }
-    })
   },
   methods: {
     clearIconClick() {

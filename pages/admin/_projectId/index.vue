@@ -25,6 +25,7 @@
 import ProjectEditForm from '@/components/Shared/ProjectEditForm.vue'
 
 export default {
+  middleware: 'auth',
   components: {
     ProjectEditForm,
   },
