@@ -1,10 +1,8 @@
-const ROOT_PATH = 'https://the-projects-project.web.app'
-
 // eslint-disable-next-line nuxt/no-cjs-in-config
 module.exports = {
   data() {
     return {
-      image: ROOT_PATH + require('@/assets/images/cat-show.png'),
+      image: 'https://i.imgur.com/EZxJt6x.pngs',
     }
   },
   /*

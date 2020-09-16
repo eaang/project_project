@@ -1,5 +1,10 @@
 // eslint-disable-next-line nuxt/no-cjs-in-config
 module.exports = {
+  data() {
+    return {
+      image: '@/assets/images/cat-show.png',
+    }
+  },
   /*
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target
@@ -15,11 +20,32 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { image: this.image },
       {
         hid: 'description',
         name: 'description',
         content:
-          "An eternal work in progress of things I want to work on, things I am currently working on, things I have forgotten to work on, and things I have finished working on. Aka, Evan's portfolio.",
+          'A portfolio-in-progress of websites, web apps and web desgin-y things. Mostly built with Rails or Vue/Nuxt.',
+      },
+      // Twitter Card
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: 'The Project of Projects' },
+      {
+        name: 'twitter:description',
+        content:
+          'A portfolio-in-progress of websites, web apps and web desgin-y things.',
+      },
+      // image must be an absolute path
+      { name: 'twitter:image', content: this.image },
+      // Facebook OpenGraph
+      { property: 'og:title', content: 'The Project of Projects' },
+      { property: 'og:site_name', content: "Evan's Portfolio" },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:image', content: this.image },
+      {
+        property: 'og:description',
+        content:
+          'A portfolio-in-progress of websites, web apps and web desgin-y things.',
       },
     ],
     link: [
