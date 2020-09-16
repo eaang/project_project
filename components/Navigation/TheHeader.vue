@@ -2,9 +2,7 @@
   <b-navbar :spaced="true" :mobile-burger="false" :transparent="true">
     <template slot="brand">
       <b-navbar-item tag="router-link" :to="{ path: '/' }">
-        <figure class="image is-1514x912">
-          <img src="~assets/images/cat-face.png" />
-        </figure>
+        <img src="~assets/images/cat-face.png" />
       </b-navbar-item>
       <TheSidenavToggle @toggle="$emit('toggle-sidenav')" />
     </template>
