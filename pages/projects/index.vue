@@ -24,6 +24,9 @@ export default {
   data() {
     return {
       hero: {
+        title: 'Projects',
+        bodyCopy:
+          'There is a reasonable chance that most of these may never be finished. But here they are anyway!',
         catPic: require(`~/assets/images/cat-working.png`),
         hasButton: false,
       },

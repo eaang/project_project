@@ -1,9 +1,8 @@
 <template>
   <b-navbar
-    :spaced="true"
     :mobile-burger="false"
     type="footer-background-color"
-    fixed-top="true"
+    :fixed-top="true"
   >
     <template slot="brand">
       <b-navbar-item tag="router-link" :to="{ path: '/' }">

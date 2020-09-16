@@ -1,5 +1,5 @@
 <template>
-  <section class="admin-login is-large">
+  <section class="section admin-login">
     <div class="container">
       <div class="columns is-centered">
         <div class="column is-one-third">
