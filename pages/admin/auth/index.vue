@@ -32,16 +32,16 @@
               <div class="control">
                 <b-button
                   v-show="isLogin"
-                  @click="authenticateUser"
                   type="is-primary"
                   expanded
+                  @click="authenticateUser"
                   >Log in</b-button
                 >
                 <b-button
                   v-show="!isLogin"
-                  @click="authenticateUser"
                   type="is-info"
                   expanded
+                  @click="authenticateUser"
                   >Sign up</b-button
                 >
               </div></b-field
@@ -69,16 +69,11 @@ export default {
         ? (authUrl =
             authUrl + 'signInWithPassword?key=' + process.env.FIREBASE_API)
         : (authUrl = authUrl + 'signUp?key=' + process.env.FIREBASE_API)
-      this.$axios
-        .$post(authUrl, {
-          email: this.email,
-          password: this.password,
-          returnSecureToken: true,
-        })
-        .then((res) => {
-          console.log(res)
-        })
-        .catch((e) => console.log(e))
+      this.$axios.$post(authUrl, {
+        email: this.email,
+        password: this.password,
+        returnSecureToken: true,
+      })
     },
   },
   head() {
