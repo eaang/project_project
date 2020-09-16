@@ -1,27 +1,35 @@
 <template>
   <div class="Site">
-    <TheHeader @toggle-sidenav="toggleSidenav" />
+    <TheHeader v-if="!loggedIn" @toggle-sidenav="toggleSidenav" />
+    <TheAdminHeader v-else @toggle-sidenav="toggleSidenav" />
     <TheSidenav :status="displaySidenav" @close="toggleSidenav" />
-    <Nuxt class="Site-content" />
+    <Nuxt class="Site-content has-navbar-fixed-top" />
     <TheFooter />
   </div>
 </template>
 
 <script>
 import TheHeader from '@/components/Navigation/TheHeader.vue'
-// import TheSidenav from '@/components/Navigation/TheSidenav.vue'
+import TheAdminHeader from '@/components/Navigation/TheAdminHeader.vue'
+import TheSidenav from '@/components/Navigation/TheSidenav.vue'
 import TheFooter from '@/components/Navigation/TheFooter.vue'
 
 export default {
   components: {
     TheHeader,
-    // TheSidenav,
+    TheAdminHeader,
+    TheSidenav,
     TheFooter,
   },
   data() {
     return {
       displaySidenav: false,
     }
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.getters.loggedIn
+    },
   },
   methods: {
     toggleSidenav() {

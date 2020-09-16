@@ -76,6 +76,7 @@
 
 <script>
 export default {
+  middleware: ['check-auth', 'auth'],
   data() {
     return {
       isEmpty: false,

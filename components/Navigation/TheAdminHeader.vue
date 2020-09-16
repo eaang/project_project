@@ -13,6 +13,12 @@
     <template slot="start">
       <nuxt-link tag="b-navbar-item" to="/" exact>Home</nuxt-link>
       <nuxt-link tag="b-navbar-item" to="/about">About</nuxt-link>
+      <nuxt-link tag="b-navbar-item" to="/admin" exact
+        >Manage Projects</nuxt-link
+      >
+      <nuxt-link tag="b-navbar-item" to="/admin/new-project"
+        >Add Project</nuxt-link
+      >
       <div class="navbar-item has-dropdown is-hoverable">
         <nuxt-link tag="a" class="navbar-link" to="/projects">
           All Projects
@@ -34,7 +40,9 @@
       <b-navbar-item tag="div">
         <div class="buttons">
           <nuxt-link to="/admin/auth"
-            ><b-button class="is-primary"> Log in </b-button></nuxt-link
+            ><b-button class="is-primary" @click="logoutUser">
+              Sign out
+            </b-button></nuxt-link
           >
         </div>
       </b-navbar-item>
@@ -51,6 +59,12 @@ export default {
   computed: {
     loadedProjects() {
       return this.$store.getters.loadedProjects
+    },
+  },
+  methods: {
+    logoutUser() {
+      this.$store.dispatch('logoutUser')
+      this.$router.push('/admin/auth')
     },
   },
 }

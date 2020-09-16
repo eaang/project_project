@@ -43,8 +43,9 @@ $colors: (
   ),
 );
 
-// Background Stuff
+// Background and Layout Colours
 $background: $white-ter;
+$navbar-background-color: $scheme-main-bis;
 $body-background-color: $background;
 $table-background-color: $background;
 
@@ -60,7 +61,8 @@ $link-invert: $primary-invert;
 $link-focus-border: $primary;
 
 // Layout Stuff
-$footer-padding: 1.5rem;
+$footer-padding: 1rem;
+$navbar-height: 3.25rem;
 
 // Import Bulma and Buefy styles
 @import '~bulma';

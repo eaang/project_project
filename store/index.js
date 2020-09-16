@@ -1,5 +1,6 @@
 export const state = () => ({
   loadedProjects: [],
+  token: null,
 })
 
 export const mutations = {
@@ -21,6 +22,12 @@ export const mutations = {
     )
     state.loadedProjects.splice(projectIndex, 1)
   },
+  setToken(state, token) {
+    state.token = token
+  },
+  clearToken(state, token) {
+    state.token = null
+  },
 }
 
 export const actions = {
@@ -40,6 +47,77 @@ export const actions = {
         context.error(e)
       })
   },
+  authenticateUser(vuexContext, authData) {
+    let authUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:'
+    authData.isLogin
+      ? (authUrl =
+          authUrl + 'signInWithPassword?key=' + process.env.FIREBASE_API)
+      : (authUrl = authUrl + 'signUp?key=' + process.env.FIREBASE_API)
+    return this.$axios
+      .$post(authUrl, {
+        email: authData.email,
+        password: authData.password,
+        returnSecureToken: true,
+      })
+      .then((result) => {
+        vuexContext.commit('setToken', result.idToken)
+        localStorage.setItem('token', result.idToken)
+        localStorage.setItem(
+          'tokenExpiration',
+          new Date().getTime() + Number.parseInt(result.expiresIn) * 1000
+        )
+        this.$cookies.set('token', result.idToken)
+        this.$cookies.set(
+          'tokenExpiration',
+          new Date().getTime() + Number.parseInt(result.expiresIn) * 1000
+        )
+      })
+  },
+  setLogoutTimer(vuexContext, duration) {
+    setTimeout(() => {
+      vuexContext.commit('clearToken')
+    }, duration)
+  },
+  initAuth(vuexContext, req) {
+    let token
+    let expirationDate
+    if (req) {
+      if (!req.headers.cookie) {
+        return
+      }
+      const tokenCookie = req.headers.cookie
+        .split(';')
+        .find((c) => c.trim().startsWith('token='))
+      if (!tokenCookie) {
+        return
+      }
+      token = tokenCookie.split('=')[1]
+      const expirationToken = req.headers.cookie
+        .split(';')
+        .find((c) => c.trim().startsWith('tokenExpiration='))
+      if (!expirationToken) {
+        return
+      }
+      expirationDate = expirationToken.split('=')[1]
+    } else {
+      token = localStorage.getItem('token')
+      expirationDate = localStorage.getItem('tokenExpiration')
+    }
+    if (new Date().getTime() > expirationDate || !token) {
+      vuexContext.dispatch('logoutUser')
+      return
+    }
+    vuexContext.commit('setToken', token)
+  },
+  logoutUser(vuexContext) {
+    vuexContext.commit('clearToken')
+    this.$cookies.remove('token')
+    this.$cookies.remove('tokenExpiration')
+    if (process.client) {
+      localStorage.removeItem('token')
+      localStorage.removeItem('tokenExpiration')
+    }
+  },
   setProjects(vuexContext, projects) {
     vuexContext.commit('setProjects', projects)
   },
@@ -58,7 +136,8 @@ export const actions = {
       .$put(
         'https://the-projects-project.firebaseio.com/projects/' +
           projectId +
-          '.json',
+          '.json?auth=' +
+          vuexContext.state.token,
         createdProject
       )
       .then((res) => {
@@ -80,7 +159,8 @@ export const actions = {
         .$put(
           'https://the-projects-project.firebaseio.com/projects/' +
             editedProjectId +
-            '.json',
+            '.json?auth=' +
+            vuexContext.state.token,
           editedProject
         )
         .then((res) => {
@@ -93,7 +173,8 @@ export const actions = {
       .$delete(
         'https://the-projects-project.firebaseio.com/projects/' +
           deletedProject.id +
-          '.json',
+          '.json?auth=' +
+          vuexContext.state.token,
         deletedProject
       )
       .then((res) => {
@@ -115,5 +196,8 @@ export const getters = {
       .slice()
       .sort((a, b) => Date.parse(b.createdOn) - Date.parse(a.createdOn))
       .slice(0, 4)
+  },
+  loggedIn(state) {
+    return state.token != null
   },
 }

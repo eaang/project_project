@@ -1,42 +1,31 @@
 <template>
-  <section class="section">
-    <div class="columns">
-      <div class="column"></div>
-      <div class="column is-one-third">
-        <h1 class="title">Bulma</h1>
-
-        <p class="subtitle">
-          Modern CSS framework based on
-          <a
-            href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox"
-            >Flexbox</a
-          >
-        </p>
-
-        <div class="field">
-          <div class="control">
-            <input class="input" type="text" placeholder="Input" />
+  <div class="about-page">
+    <!-- Hero -->
+    <!-- <HeroSection v-bind="hero" /> -->
+    <section class="hero is-info is-fullheight-with-navbar">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns is-vcentered">
+            <div class="column is-two-thirds">
+              <div class="title is-2 pb-3">
+                Are you looking for a ROCKSTAR developer and NINJA coder who is
+                SUPER UP TO DATE with the latest tech trends and fancy
+                frameworks to make the NEXT BIG THING in the GIG ECONOMY or
+                STARTUP LAND?
+              </div>
+              <div class="subtitle is-4">
+                Then I am probably not the <s>droids</s> man you are looking
+                for.
+              </div>
+            </div>
+            <div class="column">
+              <img src="~/assets/images/cat-letters.png" />
+            </div>
           </div>
         </div>
-
-        <div class="field">
-          <p class="control">
-            <span class="select">
-              <select>
-                <option>Select dropdown</option>
-              </select>
-            </span>
-          </p>
-        </div>
-
-        <div class="buttons">
-          <a class="button is-primary">Primary</a>
-          <a class="button is-link">Link</a>
-        </div>
       </div>
-      <div class="column"></div>
-    </div>
-  </section>
+    </section>
+  </div>
 </template>
 
 <script>
