@@ -66,10 +66,11 @@ export const actions = {
           'tokenExpiration',
           new Date().getTime() + Number.parseInt(result.expiresIn) * 1000
         )
-        this.$cookies.set('token', result.idToken)
+        this.$cookies.set('token', result.idToken, { secure: true })
         this.$cookies.set(
           'tokenExpiration',
-          new Date().getTime() + Number.parseInt(result.expiresIn) * 1000
+          new Date().getTime() + Number.parseInt(result.expiresIn) * 1000,
+          { secure: true }
         )
       })
   },

@@ -56,11 +56,7 @@
                   @click="authenticateUser"
                   >Log in</b-button
                 >
-                <b-button
-                  v-show="!isLogin"
-                  type="is-info"
-                  expanded
-                  @click="authenticateUser"
+                <b-button v-show="!isLogin" type="is-info" expanded disabled
                   >Sign up</b-button
                 >
               </div></b-field

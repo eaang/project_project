@@ -1,0 +1,58 @@
+[
+  {
+    "name": "about",
+    "path": "/about",
+    "component": "/home/eaang/code/nuxt_practice/project_project/pages/about/index.vue",
+    "chunkName": "pages/about/index",
+    "_name": "_fe79e8e2"
+  },
+  {
+    "name": "admin",
+    "path": "/admin",
+    "component": "/home/eaang/code/nuxt_practice/project_project/pages/admin/index.vue",
+    "chunkName": "pages/admin/index",
+    "_name": "_e46ebe5e"
+  },
+  {
+    "name": "projects",
+    "path": "/projects",
+    "component": "/home/eaang/code/nuxt_practice/project_project/pages/projects/index.vue",
+    "chunkName": "pages/projects/index",
+    "_name": "_0ac57c8e"
+  },
+  {
+    "name": "admin-auth",
+    "path": "/admin/auth",
+    "component": "/home/eaang/code/nuxt_practice/project_project/pages/admin/auth/index.vue",
+    "chunkName": "pages/admin/auth/index",
+    "_name": "_9a3b8688"
+  },
+  {
+    "name": "admin-new-project",
+    "path": "/admin/new-project",
+    "component": "/home/eaang/code/nuxt_practice/project_project/pages/admin/new-project/index.vue",
+    "chunkName": "pages/admin/new-project/index",
+    "_name": "_735e43ee"
+  },
+  {
+    "name": "admin-projectId",
+    "path": "/admin/:projectId",
+    "component": "/home/eaang/code/nuxt_practice/project_project/pages/admin/_projectId/index.vue",
+    "chunkName": "pages/admin/_projectId/index",
+    "_name": "_e8c7aeae"
+  },
+  {
+    "name": "projects-id",
+    "path": "/projects/:id",
+    "component": "/home/eaang/code/nuxt_practice/project_project/pages/projects/_id/index.vue",
+    "chunkName": "pages/projects/_id/index",
+    "_name": "_7251a079"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/home/eaang/code/nuxt_practice/project_project/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_150a18d1"
+  }
+]

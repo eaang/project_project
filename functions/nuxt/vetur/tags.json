@@ -1,0 +1,56 @@
+{
+  "TheAdminHeader": {
+    "description": "Auto imported from components/Navigation/TheAdminHeader.vue"
+  },
+  "LazyTheAdminHeader": {
+    "description": "Auto imported from components/Navigation/TheAdminHeader.vue"
+  },
+  "TheFooter": {
+    "description": "Auto imported from components/Navigation/TheFooter.vue"
+  },
+  "LazyTheFooter": {
+    "description": "Auto imported from components/Navigation/TheFooter.vue"
+  },
+  "TheHeader": {
+    "description": "Auto imported from components/Navigation/TheHeader.vue"
+  },
+  "LazyTheHeader": {
+    "description": "Auto imported from components/Navigation/TheHeader.vue"
+  },
+  "TheSidenav": {
+    "description": "Auto imported from components/Navigation/TheSidenav.vue"
+  },
+  "LazyTheSidenav": {
+    "description": "Auto imported from components/Navigation/TheSidenav.vue"
+  },
+  "TheSidenavToggle": {
+    "description": "Auto imported from components/Navigation/TheSidenavToggle.vue"
+  },
+  "LazyTheSidenavToggle": {
+    "description": "Auto imported from components/Navigation/TheSidenavToggle.vue"
+  },
+  "HeroSection": {
+    "description": "Auto imported from components/Shared/HeroSection.vue"
+  },
+  "LazyHeroSection": {
+    "description": "Auto imported from components/Shared/HeroSection.vue"
+  },
+  "ProjectCard": {
+    "description": "Auto imported from components/Shared/ProjectCard.vue"
+  },
+  "LazyProjectCard": {
+    "description": "Auto imported from components/Shared/ProjectCard.vue"
+  },
+  "ProjectEditForm": {
+    "description": "Auto imported from components/Shared/ProjectEditForm.vue"
+  },
+  "LazyProjectEditForm": {
+    "description": "Auto imported from components/Shared/ProjectEditForm.vue"
+  },
+  "ProjectList": {
+    "description": "Auto imported from components/Shared/ProjectList.vue"
+  },
+  "LazyProjectList": {
+    "description": "Auto imported from components/Shared/ProjectList.vue"
+  }
+}
