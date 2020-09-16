@@ -64,11 +64,13 @@ export const actions = {
         localStorage.setItem('token', result.idToken)
         localStorage.setItem(
           'tokenExpiration',
-          new Date().getTime() + result.expiresIn * 1000
+          new Date().getTime() + Number.parseInt(result.expiresIn) * 1000
         )
         this.$cookies.set('token', result.idToken)
-        this.$cookies.set('tokenExpiration', result.idToken)
-        vuexContext.dispatch('setLogoutTimer', result.expiresIn * 1000)
+        this.$cookies.set(
+          'tokenExpiration',
+          new Date().getTime() + Number.parseInt(result.expiresIn) * 1000
+        )
       })
   },
   setLogoutTimer(vuexContext, duration) {
@@ -100,15 +102,12 @@ export const actions = {
     } else {
       token = localStorage.getItem('token')
       expirationDate = localStorage.getItem('tokenExpiration')
-      if (new Date().getTime() > expirationDate || !token) {
-        return
-      }
+    }
+    if (new Date().getTime() > expirationDate || !token) {
+      vuexContext.commit('clearToken')
+      return
     }
     vuexContext.commit('setToken', token)
-    vuexContext.dispatch(
-      'setLogoutTimer',
-      expirationDate - new Date().getTime()
-    )
   },
   setProjects(vuexContext, projects) {
     vuexContext.commit('setProjects', projects)
