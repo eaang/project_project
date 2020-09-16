@@ -3,7 +3,7 @@
     <TheHeader v-if="!loggedIn" @toggle-sidenav="toggleSidenav" />
     <TheAdminHeader v-else @toggle-sidenav="toggleSidenav" />
     <TheSidenav :status="displaySidenav" @close="toggleSidenav" />
-    <Nuxt class="Site-content has-navbar-fixed-top" />
+    <Nuxt class="Site-content" />
     <TheFooter />
   </div>
 </template>
