@@ -1,6 +1,6 @@
 <template>
   <div class="Site">
-    <TheHeader v-if="loggedIn" @toggle-sidenav="toggleSidenav" />
+    <TheHeader v-if="!loggedIn" @toggle-sidenav="toggleSidenav" />
     <TheAdminHeader v-else @toggle-sidenav="toggleSidenav" />
     <TheSidenav :status="displaySidenav" @close="toggleSidenav" />
     <Nuxt class="Site-content" />
@@ -28,7 +28,7 @@ export default {
   },
   computed: {
     loggedIn() {
-      return this.data
+      return this.$store.getters.loggedIn
     },
   },
   methods: {

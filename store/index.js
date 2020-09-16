@@ -78,7 +78,8 @@ export const actions = {
       .$put(
         'https://the-projects-project.firebaseio.com/projects/' +
           projectId +
-          '.json',
+          '.json?auth=' +
+          vuexContext.state.token,
         createdProject
       )
       .then((res) => {
@@ -114,7 +115,8 @@ export const actions = {
       .$delete(
         'https://the-projects-project.firebaseio.com/projects/' +
           deletedProject.id +
-          '.json',
+          '.json?auth=' +
+          vuexContext.state.token,
         deletedProject
       )
       .then((res) => {
@@ -138,6 +140,6 @@ export const getters = {
       .slice(0, 4)
   },
   loggedIn(state) {
-    return state.token !== null
+    return state.token != null
   },
 }
