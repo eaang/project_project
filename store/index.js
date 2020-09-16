@@ -66,6 +66,8 @@ export const actions = {
           'tokenExpiration',
           new Date().getTime() + result.expiresIn * 1000
         )
+        this.$cookies.set('token', result.idToken)
+        this.$cookies.set('tokenExpiration', result.idToken)
         vuexContext.dispatch('setLogoutTimer', result.expiresIn * 1000)
       })
   },
@@ -74,12 +76,33 @@ export const actions = {
       vuexContext.commit('clearToken')
     }, duration)
   },
-  initAuth(vuexContext) {
-    const token = localStorage.getItem('token')
-    const expirationDate = localStorage.getItem('tokenExpiration')
-
-    if (new Date().getTime() > expirationDate || !token) {
-      return
+  initAuth(vuexContext, req) {
+    let token
+    let expirationDate
+    if (req) {
+      if (!req.headers.cookie) {
+        return
+      }
+      const tokenCookie = req.headers.cookie
+        .split(';')
+        .find((c) => c.trim().startsWith('token='))
+      if (!tokenCookie) {
+        return
+      }
+      token = tokenCookie.split('=')[1]
+      const expirationToken = req.headers.cookie
+        .split(';')
+        .find((c) => c.trim().startsWith('tokenExpiration='))
+      if (!expirationToken) {
+        return
+      }
+      expirationDate = expirationToken.split('=')[1]
+    } else {
+      token = localStorage.getItem('token')
+      expirationDate = localStorage.getItem('tokenExpiration')
+      if (new Date().getTime() > expirationDate || !token) {
+        return
+      }
     }
     vuexContext.commit('setToken', token)
     vuexContext.dispatch(

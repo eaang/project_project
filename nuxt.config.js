@@ -66,6 +66,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/cloudinary',
     'nuxt-fontawesome',
+    'cookie-universal-nuxt',
   ],
   fontawesome: {
     component: 'font-awesome-icon',
