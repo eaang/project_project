@@ -1,5 +1,12 @@
+const ROOT_PATH = 'https://the-projects-project.web.app'
+
 // eslint-disable-next-line nuxt/no-cjs-in-config
 module.exports = {
+  data() {
+    return {
+      image: ROOT_PATH + require('@/assets/images/cat-show.png'),
+    }
+  },
   /*
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target
@@ -11,17 +18,45 @@ module.exports = {
    */
   head: {
     title: 'Home',
-    titleTemplate: 'The Project of Projects - %s',
+    titleTemplate: '%s | The Project of Projects',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { image: this.image },
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || '',
+        content:
+          'A portfolio-in-progress of websites, web apps and web desgin-y things. Mostly built with Rails or Vue/Nuxt.',
+      },
+      // Twitter Card
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: 'The Project of Projects' },
+      {
+        name: 'twitter:description',
+        content:
+          'A portfolio-in-progress of websites, web apps and web desgin-y things.',
+      },
+      // image must be an absolute path
+      { name: 'twitter:image', content: this.image },
+      // Facebook OpenGraph
+      { property: 'og:title', content: 'The Project of Projects' },
+      { property: 'og:site_name', content: "Evan's Portfolio" },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:image', content: this.image },
+      {
+        property: 'og:description',
+        content:
+          'A portfolio-in-progress of websites, web apps and web desgin-y things.',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: 'favicon.ico',
+      },
+    ],
     script: [
       {
         src: 'https://widget.cloudinary.com/v2.0/global/all.js',

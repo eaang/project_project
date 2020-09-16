@@ -11,23 +11,33 @@ module.exports = {
    */
   head: {
     title: 'Home',
-    titleTemplate: 'The Project of Projects - %s',
+    titleTemplate: '%s | The Project of Projects',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || '',
+        content:
+          "An eternal work in progress of things I want to work on, things I am currently working on, things I have forgotten to work on, and things I have finished working on. Aka, Evan's portfolio.",
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: 'favicon.ico',
+      },
+    ],
     script: [
       {
         src: 'https://widget.cloudinary.com/v2.0/global/all.js',
         type: 'text/javascript',
       },
     ],
+    bodyAttrs: {
+      class: 'has-navbar-fixed-top',
+    },
   },
   /*
    ** Global CSS
