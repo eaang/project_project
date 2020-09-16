@@ -104,10 +104,19 @@ export const actions = {
       expirationDate = localStorage.getItem('tokenExpiration')
     }
     if (new Date().getTime() > expirationDate || !token) {
-      vuexContext.commit('clearToken')
+      vuexContext.dispatch('logoutUser')
       return
     }
     vuexContext.commit('setToken', token)
+  },
+  logoutUser(vuexContext) {
+    vuexContext.commit('clearToken')
+    this.$cookies.remove('token')
+    this.$cookies.remove('tokenExpiration')
+    if (process.client) {
+      localStorage.removeItem('token')
+      localStorage.removeItem('tokenExpiration')
+    }
   },
   setProjects(vuexContext, projects) {
     vuexContext.commit('setProjects', projects)

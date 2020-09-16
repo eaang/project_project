@@ -1,46 +1,24 @@
 <template>
-  <section class="section">
-    <div class="columns">
-      <div class="column"></div>
-      <div class="column is-one-third">
-        <h1 class="title">Bulma</h1>
-
-        <p class="subtitle">
-          Modern CSS framework based on
-          <a
-            href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox"
-            >Flexbox</a
-          >
-        </p>
-
-        <div class="field">
-          <div class="control">
-            <input class="input" type="text" placeholder="Input" />
-          </div>
-        </div>
-
-        <div class="field">
-          <p class="control">
-            <span class="select">
-              <select>
-                <option>Select dropdown</option>
-              </select>
-            </span>
-          </p>
-        </div>
-
-        <div class="buttons">
-          <a class="button is-primary">Primary</a>
-          <a class="button is-link">Link</a>
-        </div>
-      </div>
-      <div class="column"></div>
-    </div>
-  </section>
+  <div class="about-page">
+    <!-- Hero -->
+    <HeroSection v-bind="hero" />
+  </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      hero: {
+        title: 'A little about me',
+        bodyCopy:
+          'Are you looking for a ROCKSTAR developer and NINJA coder who is SUPER UP TO DATE with the latest tech trends and fancy frameworks to make the NEXT BIG THING in the GIG ECONOMY or STARTUP LAND? \nThen I am probably not your man.',
+        catPic: require(`~/assets/images/cat-letters.png`),
+        hasButton: false,
+      },
+    }
+  },
+}
 </script>
 
 <style lang="scss" scoped></style>

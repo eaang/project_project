@@ -1,5 +1,10 @@
 <template>
-  <b-navbar :spaced="true" :mobile-burger="false" :transparent="true">
+  <b-navbar
+    :spaced="true"
+    :mobile-burger="false"
+    type="footer-background-color"
+    fixed-top="true"
+  >
     <template slot="brand">
       <b-navbar-item tag="router-link" :to="{ path: '/' }">
         <img src="~assets/images/cat-face.png" />
@@ -36,7 +41,9 @@
       <b-navbar-item tag="div">
         <div class="buttons">
           <nuxt-link to="/admin/auth"
-            ><b-button class="is-primary"> Sign out </b-button></nuxt-link
+            ><b-button class="is-primary" @click="logoutUser">
+              Sign out
+            </b-button></nuxt-link
           >
         </div>
       </b-navbar-item>
@@ -53,6 +60,12 @@ export default {
   computed: {
     loadedProjects() {
       return this.$store.getters.loadedProjects
+    },
+  },
+  methods: {
+    logoutUser() {
+      this.$store.dispatch('logoutUser')
+      this.$router.push('/admin/auth')
     },
   },
 }

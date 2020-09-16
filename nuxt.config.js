@@ -27,6 +27,9 @@ export default {
         type: 'text/javascript',
       },
     ],
+    bodyAttrs: {
+      class: 'has-navbar-fixed-top',
+    },
   },
   /*
    ** Global CSS
