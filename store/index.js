@@ -1,5 +1,6 @@
 export const state = () => ({
   loadedProjects: [],
+  token: null,
 })
 
 export const mutations = {
@@ -21,6 +22,9 @@ export const mutations = {
     )
     state.loadedProjects.splice(projectIndex, 1)
   },
+  setToken(state, token) {
+    state.token = token
+  },
 }
 
 export const actions = {
@@ -38,6 +42,22 @@ export const actions = {
       })
       .catch((e) => {
         context.error(e)
+      })
+  },
+  authenticateUser(vuexContext, authData) {
+    let authUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:'
+    authData.isLogin
+      ? (authUrl =
+          authUrl + 'signInWithPassword?key=' + process.env.FIREBASE_API)
+      : (authUrl = authUrl + 'signUp?key=' + process.env.FIREBASE_API)
+    return this.$axios
+      .$post(authUrl, {
+        email: authData.email,
+        password: authData.password,
+        returnSecureToken: true,
+      })
+      .then((result) => {
+        vuexContext.commit('setToken', result.idToken)
       })
   },
   setProjects(vuexContext, projects) {
@@ -80,7 +100,8 @@ export const actions = {
         .$put(
           'https://the-projects-project.firebaseio.com/projects/' +
             editedProjectId +
-            '.json',
+            '.json?auth=' +
+            vuexContext.state.token,
           editedProject
         )
         .then((res) => {
@@ -115,5 +136,8 @@ export const getters = {
       .slice()
       .sort((a, b) => Date.parse(b.createdOn) - Date.parse(a.createdOn))
       .slice(0, 4)
+  },
+  loggedIn(state) {
+    return state.token !== null
   },
 }

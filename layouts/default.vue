@@ -1,6 +1,7 @@
 <template>
   <div class="Site">
-    <TheHeader @toggle-sidenav="toggleSidenav" />
+    <TheHeader v-if="loggedIn" @toggle-sidenav="toggleSidenav" />
+    <TheAdminHeader v-else @toggle-sidenav="toggleSidenav" />
     <TheSidenav :status="displaySidenav" @close="toggleSidenav" />
     <Nuxt class="Site-content" />
     <TheFooter />
@@ -9,12 +10,14 @@
 
 <script>
 import TheHeader from '@/components/Navigation/TheHeader.vue'
+import TheAdminHeader from '@/components/Navigation/TheAdminHeader.vue'
 import TheSidenav from '@/components/Navigation/TheSidenav.vue'
 import TheFooter from '@/components/Navigation/TheFooter.vue'
 
 export default {
   components: {
     TheHeader,
+    TheAdminHeader,
     TheSidenav,
     TheFooter,
   },
@@ -22,6 +25,11 @@ export default {
     return {
       displaySidenav: false,
     }
+  },
+  computed: {
+    loggedIn() {
+      return this.data
+    },
   },
   methods: {
     toggleSidenav() {

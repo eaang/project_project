@@ -23,10 +23,28 @@
               </div>
             </b-field>
             <b-field label="Email">
-              <b-input v-model.lazy="email" type="email"> </b-input>
+              <b-input
+                v-model.lazy="email"
+                validation-message="Please enter a valid email."
+                placeholder="Email"
+                type="email"
+                icon="envelope"
+                icon-right="close-circle"
+                icon-right-clickable
+                @icon-right-click="clearIconClick"
+              >
+                >
+              </b-input>
             </b-field>
             <b-field label="Password">
-              <b-input v-model.lazy="password" type="password"></b-input>
+              <b-input
+                v-model.lazy="password"
+                type="password"
+                icon="lock"
+                placeholder="Password"
+                password-reveal
+              >
+              </b-input>
             </b-field>
             <b-field>
               <div class="control">
@@ -63,17 +81,19 @@ export default {
     }
   },
   methods: {
+    clearIconClick() {
+      this.email = ''
+    },
     authenticateUser() {
-      let authUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:'
-      this.isLogin
-        ? (authUrl =
-            authUrl + 'signInWithPassword?key=' + process.env.FIREBASE_API)
-        : (authUrl = authUrl + 'signUp?key=' + process.env.FIREBASE_API)
-      this.$axios.$post(authUrl, {
-        email: this.email,
-        password: this.password,
-        returnSecureToken: true,
-      })
+      this.$store
+        .dispatch('authenticateUser', {
+          isLogin: this.isLogin,
+          email: this.email,
+          password: this.password,
+        })
+        .then(() => {
+          this.$router.push('/admin')
+        })
     },
   },
   head() {
