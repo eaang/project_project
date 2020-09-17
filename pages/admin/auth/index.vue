@@ -3,7 +3,7 @@
     <div class="container">
       <div class="columns is-centered">
         <div class="column is-one-third">
-          <div class="box">
+          <div v-if="!loggedIn" class="box">
             <b-field grouped>
               <b-field v-if="isLogin" class="title" expanded>Log in</b-field>
               <b-field v-else class="title" expanded>Sign up</b-field>
@@ -62,6 +62,9 @@
               </div></b-field
             >
           </div>
+          <div v-else class="box title has-text-centered">
+            You're already signed in!
+          </div>
         </div>
       </div>
     </div>
@@ -70,12 +73,18 @@
 
 <script>
 export default {
+  middleware: ['check-auth'],
   data() {
     return {
       isLogin: true,
       email: '',
       password: '',
     }
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.getters.loggedIn
+    },
   },
   methods: {
     clearIconClick() {
