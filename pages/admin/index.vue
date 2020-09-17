@@ -36,15 +36,31 @@
             {{ props.index + 1 }}
           </b-table-column>
 
-          <b-table-column v-slot="props" field="name" label="Project Name">
+          <b-table-column
+            v-slot="props"
+            field="name"
+            sortable
+            label="Project Name"
+          >
             {{ props.row.name }}
           </b-table-column>
 
-          <b-table-column v-slot="props" field="summary" label="Description">
+          <b-table-column
+            v-slot="props"
+            field="summary"
+            sortable
+            label="Description"
+          >
             {{ props.row.summary }}
           </b-table-column>
 
-          <b-table-column v-slot="props" field="status" label="Status" centered>
+          <b-table-column
+            v-slot="props"
+            field="status"
+            sortable
+            label="Status"
+            centered
+          >
             {{ props.row.progress * 10 }}%
           </b-table-column>
 

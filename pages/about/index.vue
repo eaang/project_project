@@ -29,7 +29,9 @@
 </template>
 
 <script>
-export default {}
+export default {
+  middleware: ['check-auth'],
+}
 </script>
 
 <style lang="scss" scoped></style>

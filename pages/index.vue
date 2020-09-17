@@ -16,6 +16,7 @@
 import ProjectList from '@/components/Shared/ProjectList.vue'
 
 export default {
+  middleware: ['check-auth'],
   components: {
     ProjectList,
   },

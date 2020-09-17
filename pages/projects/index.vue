@@ -17,6 +17,7 @@ import HeroSection from '@/components/Shared/HeroSection.vue'
 import ProjectList from '@/components/Shared/ProjectList.vue'
 
 export default {
+  middleware: ['check-auth'],
   components: {
     HeroSection,
     ProjectList,

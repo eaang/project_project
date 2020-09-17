@@ -1,10 +1,5 @@
 // eslint-disable-next-line nuxt/no-cjs-in-config
 module.exports = {
-  data() {
-    return {
-      image: 'https://i.imgur.com/EZxJt6x.pngs',
-    }
-  },
   /*
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target
@@ -20,7 +15,7 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { image: this.image },
+      { image: 'https://i.imgur.com/EZxJt6x.pngs' },
       {
         hid: 'description',
         name: 'description',
@@ -36,12 +31,12 @@ module.exports = {
           'A portfolio-in-progress of websites, web apps and web desgin-y things.',
       },
       // image must be an absolute path
-      { name: 'twitter:image', content: this.image },
+      { name: 'twitter:image', content: 'https://i.imgur.com/EZxJt6x.pngs' },
       // Facebook OpenGraph
       { property: 'og:title', content: 'The Project of Projects' },
       { property: 'og:site_name', content: "Evan's Portfolio" },
       { property: 'og:type', content: 'website' },
-      { property: 'og:image', content: this.image },
+      { property: 'og:image', content: 'https://i.imgur.com/EZxJt6x.pngs' },
       {
         property: 'og:description',
         content:

@@ -126,6 +126,7 @@ const data = [
   'Bulma',
   'Bootstrap',
   'Nuxt',
+  'Tailwind CSS',
 ]
 
 export default {
@@ -144,7 +145,7 @@ export default {
       filteredTags: data.sort(),
       isSelectOnly: false,
       tags: [],
-      allowNew: false,
+      allowNew: true,
       openOnFocus: true,
       form: this.project
         ? {
