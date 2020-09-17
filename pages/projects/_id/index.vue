@@ -39,7 +39,29 @@
                 <img src="~/assets/images/placeholder.jpg" />
               </figure>
             </div>
-            <b-button type="is-primary" expanded>Visit Project</b-button>
+            <div class="columns">
+              <div class="column">
+                <b-button
+                  tag="a"
+                  icon-left="external-link-alt"
+                  :href="project.link"
+                  type="is-primary"
+                  expanded
+                  >Visit Project</b-button
+                >
+              </div>
+              <div class="column">
+                <b-button
+                  tag="a"
+                  icon-pack="fab"
+                  icon-left="github"
+                  :href="project.github"
+                  type="is-info"
+                  expanded
+                  >See on Github</b-button
+                >
+              </div>
+            </div>
           </div>
 
           <div class="column">
@@ -88,7 +110,6 @@
 <script>
 import { format } from 'date-fns'
 export default {
-  middleware: ['check-auth'],
   async asyncData({ params, $axios }) {
     const projectData = await $axios.$get(
       'https://the-projects-project.firebaseio.com/projects/' +

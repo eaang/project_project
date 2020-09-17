@@ -92,7 +92,7 @@
 
 <script>
 export default {
-  middleware: ['check-auth', 'auth'],
+  middleware: ['auth'],
   data() {
     return {
       isEmpty: false,

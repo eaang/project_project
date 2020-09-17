@@ -23,7 +23,7 @@
 import ProjectEditForm from '@/components/Shared/ProjectEditForm.vue'
 
 export default {
-  middleware: ['check-auth', 'auth'],
+  middleware: ['auth'],
   components: {
     ProjectEditForm,
   },

@@ -6,9 +6,11 @@
           <div class="column is-two-thirds">
             <h1 class="title">{{ title }}</h1>
             <!-- eslint-disable-next-line prettier/prettier -->
-            <h2 class="subtitle" style="white-space: pre-line">{{ bodyCopy }}</h2>
+            <h2 class="subtitle" style="white-space: pre-line">
+              {{ bodyCopy }}
+            </h2>
             <nuxt-link :to="'/' + buttonLink">
-              <b-button v-if="hasButton" type="is-primary">
+              <b-button v-if="hasButton" type="is-primary" class="is-medium">
                 {{ buttonText }}
               </b-button>
             </nuxt-link>
