@@ -20,6 +20,7 @@ import nuxt_plugin_plugin_4739380f from 'nuxt_plugin_plugin_4739380f' // Source:
 import nuxt_plugin_axios_4053e6a6 from 'nuxt_plugin_axios_4053e6a6' // Source: ./axios.js (mode: 'all')
 import nuxt_plugin_buefy_094559f4 from 'nuxt_plugin_buefy_094559f4' // Source: ../plugins/buefy.js (mode: 'all')
 import nuxt_plugin_fontawesome_c99c6992 from 'nuxt_plugin_fontawesome_c99c6992' // Source: ../plugins/fontawesome.js (mode: 'all')
+import nuxt_plugin_vuelidate_45aab49a from 'nuxt_plugin_vuelidate_45aab49a' // Source: ../plugins/vuelidate.js (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -227,6 +228,10 @@ async function createApp(ssrContext, config = {}) {
 
   if (typeof nuxt_plugin_fontawesome_c99c6992 === 'function') {
     await nuxt_plugin_fontawesome_c99c6992(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_vuelidate_45aab49a === 'function') {
+    await nuxt_plugin_vuelidate_45aab49a(app.context, inject)
   }
 
   // Lock enablePreview in context

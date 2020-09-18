@@ -43,6 +43,7 @@
               <div class="column">
                 <b-button
                   tag="a"
+                  target="_blank"
                   icon-left="external-link-alt"
                   :href="project.link"
                   type="is-primary"
@@ -53,6 +54,7 @@
               <div class="column">
                 <b-button
                   tag="a"
+                  target="_blank"
                   icon-pack="fab"
                   icon-left="github"
                   :href="project.github"
