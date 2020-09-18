@@ -72,7 +72,11 @@ module.exports = {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: ['@/plugins/buefy.js', '@/plugins/fontawesome.js'],
+  plugins: [
+    '@/plugins/buefy.js',
+    '@/plugins/fontawesome.js',
+    '@/plugins/vuelidate.js',
+  ],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components

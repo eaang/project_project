@@ -13,7 +13,7 @@
                 is super up to date with the
                 <span class="has-text-warning">TRENDIEST TECH FRAMEWORKS</span>
                 to make the
-                <class class="has-text-danger">NEXT BIG INTERNET THING</class>?
+                <span class="has-text-danger">NEXT BIG INTERNET THING</span>?
               </div>
               <div class="subtitle is-4">
                 Then you may want to search elsewhere, because I am probably not
@@ -171,28 +171,50 @@
                 <h1 class="title has-text-centered">
                   Or just send me a message!
                 </h1>
-                <b-field label="Your name" :label-position="labelPosition">
-                  <b-input placeholder="Insert name here"></b-input>
-                </b-field>
-                <b-field label="Your email" :label-position="labelPosition">
-                  <b-input
-                    placeholder="If you want me to get back in touch!"
-                  ></b-input>
-                </b-field>
-                <b-field label="Your message" :label-position="labelPosition">
-                  <b-input
-                    type="textarea"
-                    placeholder="Puns optional, but always appreciated."
-                  ></b-input>
-                </b-field>
-                <b-field>
+                <form action="https://formspree.io/meqpjwnn" method="POST">
+                  <b-field label="Your name" :label-position="labelPosition">
+                    <b-input
+                      v-model="name"
+                      name="name"
+                      required
+                      placeholder="Insert name here"
+                    ></b-input>
+                  </b-field>
+                  <b-field label="Your email" :label-position="labelPosition">
+                    <b-input
+                      v-model="email"
+                      type="email"
+                      name="email"
+                      required
+                      placeholder="If you want me to get back in touch!"
+                    ></b-input>
+                  </b-field>
+                  <b-field label="Your message" :label-position="labelPosition">
+                    <b-input
+                      v-model="message"
+                      name="message"
+                      type="textarea"
+                      minlength="10"
+                      maxlength="2000"
+                      placeholder="Puns optional, but always appreciated."
+                      expanded
+                      required
+                    ></b-input>
+                  </b-field>
+                  <p class="is-hidden">
+                    <label
+                      >Phone number: <input v-model="trap" name="bot-field"
+                    /></label>
+                  </p>
                   <b-button
                     icon-right="paper-plane"
                     type="is-primary is-large"
+                    native-type="submit"
                     expanded
+                    :disabled="formValid"
                     >Let's gooooooo</b-button
                   >
-                </b-field>
+                </form>
               </div>
             </div>
           </div>
@@ -203,9 +225,32 @@
 </template>
 
 <script>
+import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
+
 export default {
+  validations: {
+    name: {
+      required,
+    },
+    email: {
+      required,
+      email,
+    },
+    message: {
+      required,
+      minLength: minLength(10),
+      maxLength: maxLength(2000),
+    },
+    trap: {
+      required,
+    },
+  },
   data() {
     return {
+      trap: '',
+      name: '',
+      email: '',
+      message: '',
       labelPosition: 'on-border',
       position: 'is-right',
       size: 'is-large',
@@ -228,6 +273,20 @@ export default {
         'extremely amateur photographer',
       ],
     }
+  },
+  computed: {
+    formValid() {
+      if (
+        !this.$v.name.$invalid &&
+        !this.$v.message.$invalid &&
+        !this.$v.message.$invalid &&
+        this.$v.trap.$invalid
+      ) {
+        return false
+      } else {
+        return true
+      }
+    },
   },
   methods: {
     changeWord() {

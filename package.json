@@ -27,7 +27,8 @@
     "nuxt-fontawesome": "^0.4.0",
     "nuxt-start": "^2.14.5",
     "vue-carousel": "^0.18.0",
-    "vue-picture-swipe": "^2.0.0"
+    "vue-picture-swipe": "^2.0.0",
+    "vuelidate": "^0.7.5"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.1.0",
