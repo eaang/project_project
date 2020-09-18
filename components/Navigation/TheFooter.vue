@@ -1,6 +1,17 @@
 <template>
   <footer class="footer">
     <div class="columns is-mobile is-gapless">
+      <div class="column align-items-center">
+        <a href="https://github.com/eaang/"
+          ><b-icon pack="fab" icon="github" size="is-large"> </b-icon
+        ></a>
+        <a href="https://www.linkedin.com/in/evanaang/"
+          ><b-icon pack="fab" icon="linkedin" size="is-large"> </b-icon
+        ></a>
+        <nuxt-link to="/about#contact-form"
+          ><b-icon icon="at" size="is-large"> </b-icon
+        ></nuxt-link>
+      </div>
       <div class="column align-items-center justify-content-end">
         <span class="has-text-info">
           all cat pics from

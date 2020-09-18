@@ -159,7 +159,7 @@
         </div>
       </div>
     </section>
-    <section class="section is-medium has-background-dark">
+    <section id="contact-form" class="section has-background-dark">
       <div class="container">
         <div class="columns is-centered is-vcentered">
           <div class="column">
