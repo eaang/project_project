@@ -1,0 +1,36 @@
+0000000000000000000000000000000000000000 7a367b647014c4e5d28beb7427b25d7ffa7ce76c Evan Ang <alethiologist@gmail.com> 1599834171 +0800	commit (initial): got buefy installed and icons working
+7a367b647014c4e5d28beb7427b25d7ffa7ce76c 1e517797f5eae7418c88ebd9c31f8e6c34e6046a Evan Ang <alethiologist@gmail.com> 1599837326 +0800	commit: im a moron who left in an extra comma
+1e517797f5eae7418c88ebd9c31f8e6c34e6046a fffacaba109ac91f254f93399c9421016efe52ee Evan Ang <alethiologist@gmail.com> 1599897979 +0800	commit: got two sidebar versions working
+fffacaba109ac91f254f93399c9421016efe52ee 9462fa33661b5ba901b4e7c94819e0bf595e6936 Evan Ang <alethiologist@gmail.com> 1599898583 +0800	commit: sidebar hooked up
+9462fa33661b5ba901b4e7c94819e0bf595e6936 73b1e374e1afb0b91c1e2b45a515185176c1e373 Evan Ang <alethiologist@gmail.com> 1599900250 +0800	commit: header displaying properly
+73b1e374e1afb0b91c1e2b45a515185176c1e373 3a7e00ab426cbfff2b4d7c77123202f8a872c548 Evan Ang <alethiologist@gmail.com> 1599966197 +0800	commit: working on admin pages
+3a7e00ab426cbfff2b4d7c77123202f8a872c548 afe98d5f9c9eaaa7995eaeaeba270f7238492e3a Evan Ang <alethiologist@gmail.com> 1599970779 +0800	commit: fixed form styling
+afe98d5f9c9eaaa7995eaeaeba270f7238492e3a d4dd61ae79c4900b940a216e7b41c1eda4e5b37e Evan Ang <alethiologist@gmail.com> 1599980594 +0800	commit: fixed v model open issue on sidebar
+d4dd61ae79c4900b940a216e7b41c1eda4e5b37e 814d91a3e3c1c4225580e4558d240af803c9480e Evan Ang <alethiologist@gmail.com> 1599982995 +0800	commit: file correct saves entire project as a thing
+814d91a3e3c1c4225580e4558d240af803c9480e c9e3a88974a54d7d96a4ac3cde1a48738b9187f3 Evan Ang <alethiologist@gmail.com> 1599985548 +0800	commit: added image previews to form
+c9e3a88974a54d7d96a4ac3cde1a48738b9187f3 4cd787c75e7ab00b58d81841a0a4c11f6ff6f5ab Evan Ang <alethiologist@gmail.com> 1600004162 +0800	commit: workign with async data
+4cd787c75e7ab00b58d81841a0a4c11f6ff6f5ab 7cd28ea8e31337d3fea8e33ff72e62f7f03c2b0a Evan Ang <alethiologist@gmail.com> 1600068386 +0800	commit: adding firebase
+7cd28ea8e31337d3fea8e33ff72e62f7f03c2b0a 4604622078e00f9dc6d8b544130fd80211a7ebe1 Evan Ang <alethiologist@gmail.com> 1600075960 +0800	commit: working cloudinary image uploader go go go
+4604622078e00f9dc6d8b544130fd80211a7ebe1 b7cf44dbe1144d8aa91885f676aeb19d0b09b262 Evan Ang <alethiologist@gmail.com> 1600085960 +0800	commit: oh my god the imgaes upload
+b7cf44dbe1144d8aa91885f676aeb19d0b09b262 26ce0e8da0521adc460c0645608aba24687d7407 Evan Ang <alethiologist@gmail.com> 1600143761 +0800	commit: issues with database, but fixed project card display
+26ce0e8da0521adc460c0645608aba24687d7407 5fb3b7290df6f91bc7b664f3b242cb36f19c82b1 Evan Ang <alethiologist@gmail.com> 1600144557 +0800	commit: giving up on the image gallery thing for now
+5fb3b7290df6f91bc7b664f3b242cb36f19c82b1 3e2b13ad3f645ae16bc73de1f437c608c21bd0c0 Evan Ang <alethiologist@gmail.com> 1600144816 +0800	commit: frontend all rendering properly at least
+3e2b13ad3f645ae16bc73de1f437c608c21bd0c0 19018a10c25439d95ac8cebb721c4a7abd6cd9ec Evan Ang <alethiologist@gmail.com> 1600145552 +0800	commit: converted store to modular format
+19018a10c25439d95ac8cebb721c4a7abd6cd9ec 3af72d0b7723051766db5d73d4befcef6a4176a3 Evan Ang <alethiologist@gmail.com> 1600170518 +0800	pull origin master: Fast-forward
+3af72d0b7723051766db5d73d4befcef6a4176a3 0aded2472d927c2f649de99ed1a6e0ab7787d53c Evan Ang <alethiologist@gmail.com> 1600178703 +0800	commit: added created / updated dates
+0aded2472d927c2f649de99ed1a6e0ab7787d53c 3f3fc9c1c3e3dbfab7b333c9a92774cec9851b84 Evan Ang <alethiologist@gmail.com> 1600181115 +0800	commit: If editing with a new name, deletes old record from firebase, also added titles
+3f3fc9c1c3e3dbfab7b333c9a92774cec9851b84 d7bb21643cad790c5ff064022274ad9aed659abd Evan Ang <alethiologist@gmail.com> 1600186162 +0800	commit: so my navbar breaks it for some reason
+d7bb21643cad790c5ff064022274ad9aed659abd 15895ba5613f6748177c92a1c2f5ad1ac66fdd2f Evan Ang <alethiologist@gmail.com> 1600187555 +0800	commit: sorting by alphabetical and date functions implemented
+15895ba5613f6748177c92a1c2f5ad1ac66fdd2f bfab06775a8fe44e640fc0d8f997f1f5594c5bf3 Evan Ang <alethiologist@gmail.com> 1600188369 +0800	commit: sidebar seems to work
+bfab06775a8fe44e640fc0d8f997f1f5594c5bf3 01286337c0cf444467ecf2a245508a2fe7eeaa95 Evan Ang <alethiologist@gmail.com> 1600188556 +0800	commit: added final links in sidebar
+01286337c0cf444467ecf2a245508a2fe7eeaa95 cea77f75c92a8122bc41769ae4162c4207bb72af Evan Ang <alethiologist@gmail.com> 1600188677 +0800	commit: removed an isactive method which wasnt doing anything on sidebar
+cea77f75c92a8122bc41769ae4162c4207bb72af 08a894bfbb75bf34af70cae72bb921409f054465 Evan Ang <alethiologist@gmail.com> 1600230916 +0800	commit: fixed navbar issues on chrome
+08a894bfbb75bf34af70cae72bb921409f054465 9839642760327f3a2c6e544ce77308fea907c49d Evan Ang <alethiologist@gmail.com> 1600254591 +0800	pull origin master: Fast-forward
+9839642760327f3a2c6e544ce77308fea907c49d 08c795450e36443434ea563aad33fc3fd7acb7e4 Evan Ang <alethiologist@gmail.com> 1600261966 +0800	commit: disabled signup functionality
+08c795450e36443434ea563aad33fc3fd7acb7e4 eb0a1bd9928e77c9d96ae3579bc41c2f14880436 Evan Ang <alethiologist@gmail.com> 1600262454 +0800	commit: moved the body css class into nuxt config
+eb0a1bd9928e77c9d96ae3579bc41c2f14880436 2743e97bdda292a6577940776a6afa99a8e9d021 Evan Ang <alethiologist@gmail.com> 1600264904 +0800	commit: trying to fix meta infor
+2743e97bdda292a6577940776a6afa99a8e9d021 9805ced9afe467da4a499be26afc4cbdc176aaa3 Evan Ang <alethiologist@gmail.com> 1600265816 +0800	commit: fixing meta images
+9805ced9afe467da4a499be26afc4cbdc176aaa3 28d792e1b1a8fbe26019475ebed93b7d616ff052 Evan Ang <alethiologist@gmail.com> 1600335641 +0800	commit: fixing authentication of where admin header displays
+28d792e1b1a8fbe26019475ebed93b7d616ff052 d5654fb666be6296d4a148ac4cf85b18a299469a Evan Ang <alethiologist@gmail.com> 1600335970 +0800	commit: fixed where admin header shows up and auth page if logged in
+d5654fb666be6296d4a148ac4cf85b18a299469a c2f46ae9c592f18f0391c41043d50f7f0f945c97 Evan Ang <alethiologist@gmail.com> 1600336258 +0800	commit: trying to remove functions folder
+c2f46ae9c592f18f0391c41043d50f7f0f945c97 09897a71d2222d09698a5f4d2071660a86c81ef4 Evan Ang <alethiologist@gmail.com> 1600366646 +0800	commit: filled out about page and made homepage tweaks

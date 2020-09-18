@@ -15,6 +15,7 @@ import TheSidenav from '@/components/Navigation/TheSidenav.vue'
 import TheFooter from '@/components/Navigation/TheFooter.vue'
 
 export default {
+  middleware: ['check-auth'],
   components: {
     TheHeader,
     TheAdminHeader,
