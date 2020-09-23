@@ -151,7 +151,7 @@
                   type="is-primary is-large"
                   outlined
                   expanded
-                  >Check out my CV</b-button
+                  >Check out my resume!</b-button
                 >
               </div>
             </div>
