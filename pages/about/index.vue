@@ -146,7 +146,7 @@
                 <b-button
                   tag="a"
                   target="_blank"
-                  href="https://pdfhost.io/v/scFNYzBUL_Evan_Ang_CVpdf.pdf"
+                  href="https://www.keepandshare.com/doc11/28444/evan-ang-resume-pdf-37k?da=y"
                   icon-left="file-download"
                   type="is-primary is-large"
                   outlined
