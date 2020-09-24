@@ -146,7 +146,7 @@
                 <b-button
                   tag="a"
                   target="_blank"
-                  href="https://pdfhost.io/v/SBxQ1YEoG_Evan_Ang_Resumepdf.pdf"
+                  href="https://pdfhost.io/v/0x~gcSaZx_Evan_Ang_Resumepdf.pdf"
                   icon-left="file-download"
                   type="is-primary is-large"
                   outlined
